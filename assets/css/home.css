@@ -292,3 +292,15 @@
 .spotlight--video .spotlight__stage { justify-self: center; width: min(100%, 420px); aspect-ratio: 9 / 16; max-height: 80vh; }
 .spotlight__video { width: 100%; height: 100%; object-fit: cover; }
 .spotlight__text { max-width: 42ch; color: var(--c-on-dark); }
+
+/* ---------- Hero ampliado: foto completa + mármore nítido nas laterais (sem desfoque) ---------- */
+.hero__fundo { inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 100%; }
+.hero .hero__bg { display: none; }
+@media (max-aspect-ratio: 1/1) {
+  /* Celular/retrato: a foto quadrada inteira embaixo, com o mármore ampliado por trás */
+  .hero__fundo { object-position: 50% 0; }
+  .hero .hero__bg { display: block; -webkit-mask-image: linear-gradient(transparent, #000 14%); mask-image: linear-gradient(transparent, #000 14%); }
+}
+
+/* ---------- Serviços com o mesmo mármore do hero ---------- */
+.services { background: #0d0c0b url("../img/marmore-hero.webp") center / cover; }
