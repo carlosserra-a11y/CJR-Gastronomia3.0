@@ -1,0 +1,5 @@
+Vídeo de fundo do Hero
+======================
+1. Coloque aqui o vídeo em loop (sem som), de preferência MP4 (H.264), 1920x1080, 10 a 20 s, até ~6 MB.
+2. Em assets/js/config.js, preencha: heroVideo: { mp4: 'assets/video/hero.mp4', webm: '' }
+Enquanto não houver vídeo, o Hero usa a foto assets/img/hero.webp com um zoom lento.

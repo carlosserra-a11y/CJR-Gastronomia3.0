@@ -1,0 +1,10 @@
+# Ferramentas locais de processamento de imagem (fotos originais e bibliotecas)
+.tools/
+
+# Configuração local do editor/assistente
+.claude/
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
