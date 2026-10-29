@@ -3,49 +3,65 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Chef Carlos Jr Gastronomia · Buffet premium, finger foods e eventos</title>
-  <meta name="description" content="Buffet premium, ilhas de frios, finger foods e mesas de doces para eventos sociais e corporativos. Monte seu orçamento e fale direto com o Chef Carlos Jr pelo WhatsApp.">
-  <meta name="theme-color" content="#1d1b18">
+  <title>CJR Gastronomia · Chef Carlos Jr · Experiências gastronômicas para eventos</title>
+  <meta name="description" content="Coffee breaks, finger foods, buffets, mesas de frios e serviços especiais para eventos sociais e corporativos, com o Chef Carlos Junior. Monte seu orçamento e envie pelo WhatsApp.">
+  <meta name="theme-color" content="#1b1a17">
   <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
-
-  <!-- Compartilhamento (troque pelo domínio final para URLs absolutas) -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
-  <meta property="og:title" content="Chef Carlos Jr Gastronomia">
-  <meta property="og:description" content="Buffet premium, finger foods e eventos sociais e corporativos com a assinatura do Chef Carlos Jr.">
+  <meta property="og:title" content="CJR Gastronomia · Chef Carlos Jr">
+  <meta property="og:description" content="Experiências gastronômicas para eventos sociais e corporativos.">
   <meta property="og:image" content="assets/img/og-image.jpg">
 
-  <script>document.documentElement.classList.replace('no-js', 'js');</script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Great+Vibes&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/img/hero.webp" media="(min-width: 701px), (orientation: landscape)">
-  <link rel="preload" as="image" href="assets/img/hero-mobile.webp" media="(max-width: 700px) and (orientation: portrait)">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>
+    document.documentElement.classList.replace('no-js', 'js');
+    // Abertura com o logo: só na primeira página da visita.
+    try { if (sessionStorage.getItem('cjr-intro')) document.documentElement.classList.add('intro-seen'); } catch (e) {}
+    window.__introStart = Date.now();
+    setTimeout(function () { var i = document.getElementById('intro'); if (i) i.classList.add('is-done'); }, 4500);
+    // Segurança: se os scripts falharem, o conteúdo aparece mesmo assim.
+    setTimeout(function () { if (!(window.ChefSite && window.ChefSite.ready)) document.documentElement.classList.add('reveal-off'); }, 3000);
+  </script>
+  <link rel="preload" as="image" href="assets/img/hero-marmore.webp" media="(min-aspect-ratio: 3/4)">
+  <link rel="preload" as="image" href="assets/img/hero-marmore-mobile.webp" media="(max-aspect-ratio: 3/4)">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-normal-400_700.woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/home.css">
 
   <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/portfolio-data.js" defer></script>
+  <script src="assets/js/consent.js" defer></script>
   <script src="assets/js/whatsapp.js" defer></script>
+  <script src="assets/js/leadform.js" defer></script>
   <script src="assets/js/quote.js" defer></script>
   <script src="assets/js/carousel.js" defer></script>
   <script src="assets/js/lightbox.js" defer></script>
-  <script src="assets/js/form.js" defer></script>
+  <script src="assets/js/portfolio.js" defer></script>
+  <script src="assets/js/reviews.js" defer></script>
+  <script src="assets/js/effects.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "FoodEstablishment",
-    "name": "Chef Carlos Jr Gastronomia",
-    "description": "Buffet premium, finger foods e eventos sociais e corporativos.",
+    "name": "CJR Gastronomia",
+    "alternateName": "Chef Carlos Jr Gastronomia",
+    "description": "Experiências gastronômicas para eventos sociais e corporativos: coffee breaks, finger foods, buffets, mesas de frios e serviços especiais.",
     "telephone": "+55 48 99683-5439",
-    "servesCuisine": "Gastronomia autoral",
+    "founder": { "@type": "Person", "name": "Carlos Junior", "jobTitle": "Chef" },
     "sameAs": ["https://www.instagram.com/chefcarlosjr_gastronomia/"]
   }
   </script>
 </head>
 <body>
-  <!-- Ícones (sprite SVG reutilizado com <use href="#i-...">) -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <img class="intro__logo" src="assets/logo/logo-claro-hd.png" alt="" width="1448" height="700">
+    <span class="intro__line"></span>
+  </div>
   <svg class="sprite" aria-hidden="true" focusable="false">
     <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.42.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35m-5.42 7.4h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41Z"/></symbol>
     <symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></symbol>
@@ -56,34 +72,36 @@
     <symbol id="i-photos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></symbol>
     <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="5" width="3.5" height="14" rx="1"/><rect x="14" y="5" width="3.5" height="14" rx="1"/></symbol>
   </svg>
 
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="ambient" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
 
   <!-- ===================== CABEÇALHO ===================== -->
   <header class="site-header" data-header>
     <div class="container site-header__inner">
-      <a class="brand" href="#inicio" aria-label="Chef Carlos Jr Gastronomia, voltar ao início">
-        <img class="brand__logo brand__logo--light" src="assets/logo/logo-claro.png" alt="" width="520" height="251">
-        <img class="brand__logo brand__logo--dark" src="assets/logo/logo-escuro.png" alt="" width="520" height="251">
-      </a>
-
-      <nav class="main-nav" id="main-nav" aria-label="Menu principal">
-        <ul class="main-nav__list" role="list">
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#servicos">Serviços</a></li>
-          <li><a href="#avaliacoes">Avaliações</a></li>
-          <li data-feature="workshops" hidden><a href="#workshops">Workshops</a></li>
-          <li data-feature="cursos" hidden><a href="#cursos">Cursos</a></li>
-          <li><a href="#contato">Contato</a></li>
-        </ul>
-      </nav>
-
+      <div class="site-header__left">
+        <a class="brand" href="#inicio" aria-label="CJR Gastronomia, ir para o início">
+          <img class="brand__logo brand__logo--light" src="assets/logo/logo-claro.png" alt="" width="520" height="251">
+          <img class="brand__logo brand__logo--dark" src="assets/logo/logo-escuro.png" alt="" width="520" height="251">
+        </a>
+        <nav class="main-nav" id="main-nav" aria-label="Menu principal">
+          <ul class="main-nav__list" role="list">
+            <li><a href="#quem-somos">Quem somos</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li data-feature="workshops" hidden><a href="#workshops">Workshops</a></li>
+            <li data-feature="cursos" hidden><a href="#cursos">Cursos</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
       <div class="site-header__actions">
         <button class="btn btn--quote" type="button" data-quote-open aria-controls="quote-drawer" aria-expanded="false">
           <svg aria-hidden="true"><use href="#i-list"/></svg>
           <span class="btn--quote__label">Meu orçamento</span>
-          <span class="quote-count" data-quote-count-badge><span data-quote-count>0</span><span class="sr-only"> itens</span></span>
+          <span class="quote-count" data-quote-count-badge><span data-quote-count>0</span><span class="sr-only" data-quote-count-label> serviços</span></span>
         </button>
         <button class="menu-toggle" type="button" aria-controls="main-nav" aria-expanded="false" data-menu-toggle>
           <span class="sr-only" data-menu-label>Abrir menu</span>
@@ -95,118 +113,126 @@
 
   <main id="conteudo">
     <!-- ===================== HERO ===================== -->
-    <section class="hero" id="inicio" aria-labelledby="hero-title">
+    <section class="hero" id="inicio" aria-labelledby="hero-title" data-hero>
       <div class="hero__media" aria-hidden="true">
         <picture>
-          <source media="(max-width: 700px) and (orientation: portrait)" srcset="assets/img/hero-mobile.webp">
-          <img class="hero__poster" src="assets/img/hero.webp" alt="" width="1920" height="1080" fetchpriority="high">
+          <source media="(max-aspect-ratio: 3/4)" srcset="assets/img/hero-marmore-mobile.webp">
+          <img class="hero__bg" src="assets/img/hero-marmore.webp" alt="" width="2048" height="1756" fetchpriority="high">
         </picture>
-        <!-- Vídeo em loop: informe o arquivo em assets/js/config.js (heroVideo). Sem vídeo, a foto acima fica como fundo. -->
         <video class="hero__video" muted loop playsinline preload="none" data-hero-video></video>
       </div>
-      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="hero__vignette" aria-hidden="true"></div>
+      <div class="hero__spot" aria-hidden="true"></div>
+      <canvas class="hero__dust" data-hero-dust aria-hidden="true"></canvas>
 
-      <div class="container hero__content">
-        <p class="eyebrow eyebrow--light reveal">Buffet premium · Finger foods · Eventos</p>
-        <h1 class="hero__title reveal" id="hero-title" style="--delay: .1s">
-          Alta gastronomia para receber bem
-          <span class="script">pelo Chef Carlos Jr</span>
+      <div class="hero__content">
+        <h1 class="hero__title" id="hero-title">
+          <span class="sr-only">Chef Carlos Jr Gastronomia</span>
+          <span class="hero__logo" aria-hidden="true">
+            <img class="hero__logo-img" src="assets/logo/logo-claro-hd.png" alt="" width="1448" height="700">
+            <span class="hero__logo-shine"></span>
+          </span>
         </h1>
-        <p class="hero__lead reveal" style="--delay: .2s">Ilhas de frios, finger foods e mesas autorais para eventos sociais e corporativos, com montagem impecável e atendimento direto com o Chef.</p>
-        <div class="hero__actions reveal" style="--delay: .3s">
-          <a class="btn btn--gold btn--lg" href="https://wa.me/5548996835439" data-whatsapp data-message="Olá, Chef Carlos! Vim pelo site e gostaria de conversar sobre um evento.">
-            <svg aria-hidden="true"><use href="#i-whatsapp"/></svg>
-            Fale com o Chef
+        <p class="hero__tagline reveal" style="--delay: 1.2s">Experiências gastronômicas para eventos</p>
+        <div class="hero__actions reveal" style="--delay: 1.45s">
+          <button class="btn btn--gold btn--lg" type="button" data-quote-open aria-controls="quote-drawer" aria-expanded="false">
+            <svg aria-hidden="true"><use href="#i-list"/></svg>Montar meu orçamento
+          </button>
+          <a class="btn btn--ghost-light btn--lg" href="https://wa.me/5548996835439" data-whatsapp data-cta="hero-whatsapp">
+            <svg aria-hidden="true"><use href="#i-whatsapp"/></svg>Fale com o Chef
           </a>
-          <a class="link-arrow link-arrow--light" href="#servicos">Conheça os serviços</a>
         </div>
       </div>
-
-      <a class="hero__scroll" href="#sobre" aria-label="Ir para a seção Sobre"><span></span></a>
+      <a class="hero__scroll" href="#quem-somos">Descubra<span aria-hidden="true"></span></a>
     </section>
 
-    <!-- ===================== SOBRE ===================== -->
-    <section class="section about" id="sobre" aria-labelledby="about-title">
+    <!-- ===================== QUEM SOMOS ===================== -->
+    <section class="section about" id="quem-somos" aria-labelledby="about-title">
+      <svg class="vein" viewBox="0 0 760 420" aria-hidden="true" focusable="false"><path pathLength="1" d="M8 400 C 150 330 210 360 318 262 S 520 118 752 36"/><path pathLength="1" d="M70 416 C 210 372 300 388 420 304 S 610 196 744 168" opacity=".55"/></svg>
       <div class="container about__grid">
         <div class="about__media">
           <figure class="about__portrait reveal">
-            <img src="assets/img/chef.webp" alt="Chef Carlos Jr de dólmã branco, sorrindo, durante um evento ao ar livre" width="960" height="1200" loading="lazy">
+            <img src="assets/img/chef.webp" alt="Chef Carlos Junior de dólmã branco, sorrindo, durante um evento ao ar livre" width="960" height="1200" loading="lazy">
           </figure>
           <figure class="about__team reveal" style="--delay: .2s">
-            <img src="assets/img/equipe.webp" alt="Chef Carlos Jr e sua equipe montando as travessas na cozinha" width="1200" height="800" loading="lazy">
+            <img src="assets/img/equipe.webp" alt="Chef Carlos Junior e sua equipe finalizando as travessas na cozinha" width="1200" height="800" loading="lazy">
             <figcaption>Equipe em ação</figcaption>
           </figure>
+          <p class="about__badge reveal" style="--delay: .35s"><span><strong data-count="12">12</strong>anos de experiência</span></p>
         </div>
 
         <div class="about__text">
-          <p class="eyebrow reveal">O Chef</p>
-          <h2 class="section-title reveal" id="about-title">Técnica de alta gastronomia, cuidado de anfitrião</h2>
-          <p class="reveal">O Chef Carlos Jr leva a cada evento o rigor da cozinha profissional e a atenção de quem recebe em casa. Do cardápio à montagem, cada detalhe é pensado para que você aproveite a sua festa com tranquilidade.</p>
-          <p class="reveal">As preparações são artesanais, com ingredientes selecionados, e chegam à mesa com apresentação de restaurante: ilhas de frios generosas, finger foods delicados e mesas que encantam à primeira vista.</p>
-
-          <ul class="pillars" role="list">
-            <li class="reveal">
-              <span class="pillars__num" aria-hidden="true">01</span>
-              <div>
-                <h3>Preparo artesanal</h3>
-                <p>Receitas autorais, produzidas especialmente para cada evento.</p>
-              </div>
-            </li>
-            <li class="reveal">
-              <span class="pillars__num" aria-hidden="true">02</span>
-              <div>
-                <h3>Montagem impecável</h3>
-                <p>Ilhas, mesas e bandejas montadas no local pela nossa equipe.</p>
-              </div>
-            </li>
-            <li class="reveal">
-              <span class="pillars__num" aria-hidden="true">03</span>
-              <div>
-                <h3>Atendimento direto</h3>
-                <p>Você conversa com o próprio Chef, do cardápio ao último detalhe.</p>
-              </div>
-            </li>
+          <p class="eyebrow reveal">Quem somos</p>
+          <h2 class="section-title reveal" id="about-title">Chef Carlos Junior</h2>
+          <p class="about__lead reveal">À frente da CJR Gastronomia, o Chef Carlos Junior reúne 8 anos de formação em Gastronomia e uma trajetória de 12 anos de experiência profissional no setor.</p>
+          <p class="reveal">Graduado em Gastronomia pela PUCRS e com pós-graduação em Gastronomia Contemporânea, construiu sua carreira em diferentes cozinhas, restaurantes e experiências gastronômicas, desenvolvendo um olhar apurado para técnicas, sabores, apresentação e excelência no serviço.</p>
+          <p class="reveal">Seu trabalho é guiado pela combinação entre técnica, criatividade e hospitalidade, com o propósito de transformar cada evento em uma experiência gastronômica memorável — da escolha dos ingredientes à apresentação dos pratos, do planejamento à experiência dos convidados.</p>
+          <ul class="stats reveal" role="list">
+            <li><strong data-count="12">12</strong><span>anos de experiência profissional</span></li>
+            <li><strong data-count="8">8</strong><span>anos de formação em Gastronomia</span></li>
+            <li><strong>PUCRS</strong><span>Graduação em Gastronomia</span></li>
+            <li><strong>Pós</strong><span>em Gastronomia Contemporânea</span></li>
           </ul>
           <p class="signature reveal" aria-hidden="true">Carlos Jr</p>
         </div>
       </div>
+
+      <div class="container">
+        <div class="company on-dark reveal">
+          <div>
+            <p class="eyebrow">A empresa</p>
+            <h3>Sobre a CJR Gastronomia</h3>
+            <p>A CJR Gastronomia é especializada em experiências gastronômicas para eventos sociais e corporativos, com soluções personalizadas em coffee breaks, finger foods, buffets, mesas de frios e serviços especiais.</p>
+            <p>Mais do que servir refeições, nosso propósito é criar experiências que aproximem pessoas, valorizem os momentos e encantem os convidados. Cada serviço é planejado de acordo com as necessidades do evento, contemplando cardápio, estrutura, equipe e apresentação.</p>
+            <ul class="company__specialties" role="list" aria-label="Especialidades">
+              <li>Coffee breaks</li><li>Finger foods</li><li>Buffets</li><li>Mesas de frios</li><li>Serviços especiais</li>
+            </ul>
+          </div>
+          <ul class="company__pillars" role="list" aria-label="O que planejamos em cada evento">
+            <li><strong>Cardápio</strong><span>Pensado para a ocasião e os convidados.</span></li>
+            <li><strong>Estrutura</strong><span>Montagem adequada ao espaço do evento.</span></li>
+            <li><strong>Equipe</strong><span>Profissionais dimensionados para o serviço.</span></li>
+            <li><strong>Apresentação</strong><span>Cuidado visual em cada mesa e prato.</span></li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <!-- ===================== SERVIÇOS (carrossel + galeria) ===================== -->
-    <section class="section services" id="servicos" aria-labelledby="services-title">
+    <!-- ===================== SERVIÇOS ===================== -->
+    <section class="section services on-dark" id="servicos" aria-labelledby="services-title">
       <div class="container services__head">
         <div>
-          <p class="eyebrow eyebrow--gold reveal">Serviços</p>
-          <h2 class="section-title section-title--light reveal" id="services-title">Monte o seu evento</h2>
+          <p class="eyebrow reveal">Serviços</p>
+          <h2 class="section-title reveal" id="services-title">Monte o seu evento</h2>
         </div>
-        <p class="services__intro reveal">Toque nas fotos para ver mais imagens e adicione ao orçamento o que combina com a sua ocasião. Você revisa tudo antes de enviar.</p>
+        <p class="services__intro reveal">Toque nas fotos para ver mais imagens e adicione ao orçamento o que combina com a sua ocasião. Depois, informe local, data e convidados: o pedido chega completo ao Chef.</p>
       </div>
 
       <div class="carousel reveal" data-carousel>
         <ul class="carousel__track" role="list" data-carousel-track aria-label="Serviços">
-          <li class="service-card" data-service="frios" data-service-name="Ilhas de frios">
-            <button class="service-card__media" type="button" data-gallery-open aria-label="Ver fotos: Ilhas de frios">
+          <li class="service-card" data-service="frios">
+            <button class="service-card__media" type="button" data-gallery-open aria-label="Ver fotos: Mesas e ilhas de frios">
               <img src="assets/img/frios-capa.webp" alt="" width="720" height="900" loading="lazy">
               <span class="service-card__chip"><svg aria-hidden="true"><use href="#i-photos"/></svg>4 fotos</span>
             </button>
             <div class="service-card__body">
               <p class="service-card__tag">Recepção e coquetel</p>
-              <h3 class="service-card__title">Ilhas de frios</h3>
+              <h3 class="service-card__title">Mesas e ilhas de frios</h3>
               <p class="service-card__text">Queijos, embutidos, pães artesanais e frutas em composições generosas, montadas no local.</p>
-              <button class="btn btn--outline-light service-card__add" type="button" data-quote-add>
-                <span class="when-off"><svg aria-hidden="true"><use href="#i-plus"/></svg>Adicionar ao orçamento</span>
-                <span class="when-on"><svg aria-hidden="true"><use href="#i-check"/></svg>No seu orçamento</span>
+              <button class="btn btn--outline service-card__add" type="button" data-quote-add>
+                <span class="when-off"><svg aria-hidden="true"><use href="#i-plus"/></svg>Adicionar<span class="sr-only"> Mesas e ilhas de frios</span> ao orçamento</span>
+                <span class="when-on"><svg aria-hidden="true"><use href="#i-check"/></svg>No seu orçamento<span class="sr-only">: Mesas e ilhas de frios</span></span>
               </button>
             </div>
             <template data-gallery>
-              <img src="assets/img/frios-1.webp" alt="Ilha de frios com queijos, presuntos, frutas e alecrim">
-              <img src="assets/img/frios-2.webp" alt="Mesa de frios completa com doces em taças e arranjo de orquídeas">
+              <img src="assets/img/frios-1.webp" alt="Ilha de frios com queijos, presuntos, pitaia e ramos de alecrim">
+              <img src="assets/img/frios-2.webp" alt="Mesa de frios farta com queijos, embutidos e frutas">
               <img src="assets/img/frios-3.webp" alt="Tábua de embutidos, queijos e uvas ao lado do cartão do Chef">
               <img src="assets/img/frios-4.webp" alt="Terrines de queijo com azeitonas, castanhas e ervas frescas">
             </template>
           </li>
 
-          <li class="service-card" data-service="finger" data-service-name="Finger foods">
+          <li class="service-card" data-service="finger">
             <button class="service-card__media" type="button" data-gallery-open aria-label="Ver fotos: Finger foods">
               <img src="assets/img/finger-capa.webp" alt="" width="720" height="900" loading="lazy">
               <span class="service-card__chip"><svg aria-hidden="true"><use href="#i-photos"/></svg>3 fotos</span>
@@ -215,19 +241,19 @@
               <p class="service-card__tag">Coquetel volante</p>
               <h3 class="service-card__title">Finger foods</h3>
               <p class="service-card__text">Canapés, verrines e minissobremesas servidos em bandejas, práticos para o convidado circular.</p>
-              <button class="btn btn--outline-light service-card__add" type="button" data-quote-add>
-                <span class="when-off"><svg aria-hidden="true"><use href="#i-plus"/></svg>Adicionar ao orçamento</span>
-                <span class="when-on"><svg aria-hidden="true"><use href="#i-check"/></svg>No seu orçamento</span>
+              <button class="btn btn--outline service-card__add" type="button" data-quote-add>
+                <span class="when-off"><svg aria-hidden="true"><use href="#i-plus"/></svg>Adicionar<span class="sr-only"> Finger foods</span> ao orçamento</span>
+                <span class="when-on"><svg aria-hidden="true"><use href="#i-check"/></svg>No seu orçamento<span class="sr-only">: Finger foods</span></span>
               </button>
             </div>
             <template data-gallery>
-              <img src="assets/img/finger-1.webp" alt="Minicheesecake de frutas vermelhas servido em porção individual">
-              <img src="assets/img/finger-2.webp" alt="Verrines com creme, morangos e uvas sobre bandeja de madeira">
-              <img src="assets/img/finger-3.webp" alt="Garçonete servindo minissanduíches e sucos em bandeja">
+              <img src="assets/img/finger-1.webp" alt="Minicheesecake de frutas vermelhas em porção individual">
+              <img src="assets/img/finger-2.webp" alt="Verrines de creme com morangos e uvas sobre bandeja de madeira">
+              <img src="assets/img/finger-3.webp" alt="Verrines de brownie com creme e folhas de hortelã">
             </template>
           </li>
 
-          <li class="service-card" data-service="doces" data-service-name="Doces e gelo seco">
+          <li class="service-card" data-service="doces">
             <button class="service-card__media" type="button" data-gallery-open aria-label="Ver fotos: Doces e gelo seco">
               <img src="assets/img/doces-capa.webp" alt="" width="720" height="900" loading="lazy">
               <span class="service-card__chip"><svg aria-hidden="true"><use href="#i-photos"/></svg>4 fotos</span>
@@ -236,53 +262,53 @@
               <p class="service-card__tag">Sobremesas</p>
               <h3 class="service-card__title">Doces e gelo seco</h3>
               <p class="service-card__text">Torres de doces finos, tortas e cheesecakes, com apresentação cenográfica em gelo seco.</p>
-              <button class="btn btn--outline-light service-card__add" type="button" data-quote-add>
-                <span class="when-off"><svg aria-hidden="true"><use href="#i-plus"/></svg>Adicionar ao orçamento</span>
-                <span class="when-on"><svg aria-hidden="true"><use href="#i-check"/></svg>No seu orçamento</span>
+              <button class="btn btn--outline service-card__add" type="button" data-quote-add>
+                <span class="when-off"><svg aria-hidden="true"><use href="#i-plus"/></svg>Adicionar<span class="sr-only"> Doces e gelo seco</span> ao orçamento</span>
+                <span class="when-on"><svg aria-hidden="true"><use href="#i-check"/></svg>No seu orçamento<span class="sr-only">: Doces e gelo seco</span></span>
               </button>
             </div>
             <template data-gallery>
-              <img src="assets/img/doces-1.webp" alt="Torre de doces com efeito de gelo seco">
-              <img src="assets/img/doces-2.webp" alt="Cheesecake inteiro com calda de frutas vermelhas">
-              <img src="assets/img/doces-3.webp" alt="Bolo red velvet decorado com morangos">
-              <img src="assets/img/doces-4.webp" alt="Fatias de cheesecake servidas em pratos individuais">
+              <img src="assets/img/doces-1.webp" alt="Torre de doces finos com efeito de gelo seco">
+              <img src="assets/img/doces-2.webp" alt="Suporte de doces com fumaça de gelo seco">
+              <img src="assets/img/doces-3.webp" alt="Cheesecake inteiro com calda de frutas vermelhas">
+              <img src="assets/img/doces-4.webp" alt="Bolo red velvet decorado com morangos">
             </template>
           </li>
 
-          <li class="service-card" data-service="quentes" data-service-name="Pratos quentes">
-            <button class="service-card__media" type="button" data-gallery-open aria-label="Ver fotos: Pratos quentes">
+          <li class="service-card" data-service="quentes">
+            <button class="service-card__media" type="button" data-gallery-open aria-label="Ver fotos: Buffet de pratos quentes">
               <img src="assets/img/quentes-capa.webp" alt="" width="720" height="900" loading="lazy">
               <span class="service-card__chip"><svg aria-hidden="true"><use href="#i-photos"/></svg>4 fotos</span>
             </button>
             <div class="service-card__body">
               <p class="service-card__tag">Almoço e jantar</p>
-              <h3 class="service-card__title">Pratos quentes</h3>
-              <p class="service-card__text">Risotos, massas e gratinados finalizados na hora, servidos em réchauds ou empratados.</p>
-              <button class="btn btn--outline-light service-card__add" type="button" data-quote-add>
-                <span class="when-off"><svg aria-hidden="true"><use href="#i-plus"/></svg>Adicionar ao orçamento</span>
-                <span class="when-on"><svg aria-hidden="true"><use href="#i-check"/></svg>No seu orçamento</span>
+              <h3 class="service-card__title">Buffet de pratos quentes</h3>
+              <p class="service-card__text">Risotos, massas, frutos do mar e gratinados, servidos em réchauds ou empratados.</p>
+              <button class="btn btn--outline service-card__add" type="button" data-quote-add>
+                <span class="when-off"><svg aria-hidden="true"><use href="#i-plus"/></svg>Adicionar<span class="sr-only"> Buffet de pratos quentes</span> ao orçamento</span>
+                <span class="when-on"><svg aria-hidden="true"><use href="#i-check"/></svg>No seu orçamento<span class="sr-only">: Buffet de pratos quentes</span></span>
               </button>
             </div>
             <template data-gallery>
               <img src="assets/img/quentes-1.webp" alt="Gratinados individuais dourados com ervas">
-              <img src="assets/img/quentes-2.webp" alt="Risoto cremoso finalizado na frigideira">
-              <img src="assets/img/quentes-3.webp" alt="Capeletti em caldo servido em panela de ferro">
-              <img src="assets/img/quentes-4.webp" alt="Bowls individuais com arroz, legumes e carne">
+              <img src="assets/img/quentes-2.webp" alt="Prato de camarões com molho cremoso e salsinha">
+              <img src="assets/img/quentes-3.webp" alt="Risoto cremoso finalizado na frigideira">
+              <img src="assets/img/quentes-4.webp" alt="Capeletti em caldo servido em panela de ferro">
             </template>
           </li>
 
-          <li class="service-card" data-service="coffee" data-service-name="Coffee break corporativo">
-            <button class="service-card__media" type="button" data-gallery-open aria-label="Ver fotos: Coffee break corporativo">
+          <li class="service-card" data-service="coffee">
+            <button class="service-card__media" type="button" data-gallery-open aria-label="Ver fotos: Coffee break">
               <img src="assets/img/coffee-capa.webp" alt="" width="720" height="900" loading="lazy">
               <span class="service-card__chip"><svg aria-hidden="true"><use href="#i-photos"/></svg>4 fotos</span>
             </button>
             <div class="service-card__body">
-              <p class="service-card__tag">Empresas</p>
-              <h3 class="service-card__title">Coffee break corporativo</h3>
+              <p class="service-card__tag">Empresas e reuniões</p>
+              <h3 class="service-card__title">Coffee break</h3>
               <p class="service-card__text">Mesas completas para reuniões e confraternizações: pães, bolos, frios, frutas e bebidas.</p>
-              <button class="btn btn--outline-light service-card__add" type="button" data-quote-add>
-                <span class="when-off"><svg aria-hidden="true"><use href="#i-plus"/></svg>Adicionar ao orçamento</span>
-                <span class="when-on"><svg aria-hidden="true"><use href="#i-check"/></svg>No seu orçamento</span>
+              <button class="btn btn--outline service-card__add" type="button" data-quote-add>
+                <span class="when-off"><svg aria-hidden="true"><use href="#i-plus"/></svg>Adicionar<span class="sr-only"> Coffee break</span> ao orçamento</span>
+                <span class="when-on"><svg aria-hidden="true"><use href="#i-check"/></svg>No seu orçamento<span class="sr-only">: Coffee break</span></span>
               </button>
             </div>
             <template data-gallery>
@@ -293,25 +319,25 @@
             </template>
           </li>
 
-          <li class="service-card" data-service="showcooking" data-service-name="Show cooking">
+          <li class="service-card" data-service="showcooking">
             <button class="service-card__media" type="button" data-gallery-open aria-label="Ver fotos: Show cooking">
               <img src="assets/img/showcooking-capa.webp" alt="" width="720" height="900" loading="lazy">
               <span class="service-card__chip"><svg aria-hidden="true"><use href="#i-photos"/></svg>4 fotos</span>
             </button>
             <div class="service-card__body">
-              <p class="service-card__tag">Experiência</p>
+              <p class="service-card__tag">Serviço especial</p>
               <h3 class="service-card__title">Show cooking</h3>
               <p class="service-card__text">O Chef cozinha ao vivo diante dos convidados, com massas frescas e preparos interativos.</p>
-              <button class="btn btn--outline-light service-card__add" type="button" data-quote-add>
-                <span class="when-off"><svg aria-hidden="true"><use href="#i-plus"/></svg>Adicionar ao orçamento</span>
-                <span class="when-on"><svg aria-hidden="true"><use href="#i-check"/></svg>No seu orçamento</span>
+              <button class="btn btn--outline service-card__add" type="button" data-quote-add>
+                <span class="when-off"><svg aria-hidden="true"><use href="#i-plus"/></svg>Adicionar<span class="sr-only"> Show cooking</span> ao orçamento</span>
+                <span class="when-on"><svg aria-hidden="true"><use href="#i-check"/></svg>No seu orçamento<span class="sr-only">: Show cooking</span></span>
               </button>
             </div>
             <template data-gallery>
-              <img src="assets/img/showcooking-1.webp" alt="Chef Carlos Jr preparando massa fresca ao ar livre">
-              <img src="assets/img/showcooking-2.webp" alt="Chef Carlos Jr sorrindo enquanto cozinha diante dos convidados">
-              <img src="assets/img/showcooking-3.webp" alt="Chef Carlos Jr cortando massa fresca na máquina">
-              <img src="assets/img/showcooking-4.webp" alt="Chef Carlos Jr falando ao microfone durante um evento">
+              <img src="assets/img/showcooking-1.webp" alt="Chef Carlos Junior preparando massa fresca ao ar livre">
+              <img src="assets/img/showcooking-2.webp" alt="Chef Carlos Junior de dólmã branco em sua bancada">
+              <img src="assets/img/showcooking-3.webp" alt="Chef Carlos Junior cortando massa fresca na máquina">
+              <img src="assets/img/showcooking-4.webp" alt="Chef Carlos Junior falando ao microfone durante um evento">
             </template>
           </li>
         </ul>
@@ -328,276 +354,181 @@
 
       <div class="container services__foot reveal">
         <p>Procura algo sob medida? O Chef cria cardápios exclusivos para cada ocasião.</p>
-        <a class="link-arrow link-arrow--gold" href="https://wa.me/5548996835439" data-whatsapp data-message="Olá, Chef Carlos! Gostaria de um cardápio sob medida para o meu evento.">Conversar sobre um cardápio exclusivo</a>
+        <a class="link-arrow" href="https://wa.me/5548996835439" data-whatsapp data-cta="servicos-exclusivo" data-message="Olá, Chef Carlos! Gostaria de um cardápio sob medida para o meu evento.">Conversar sobre um cardápio exclusivo</a>
       </div>
     </section>
 
-    <!-- ===================== AVALIAÇÕES ===================== -->
-    <section class="section reviews" id="avaliacoes" aria-labelledby="reviews-title">
-      <div class="container">
-        <div class="reviews__head">
-          <div>
-            <p class="eyebrow reveal">Avaliações</p>
-            <h2 class="section-title reveal" id="reviews-title">Quem provou, recomenda</h2>
-          </div>
-          <div class="google-badge reveal">
-            <svg class="google-badge__logo" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2A11.9 11.9 0 0 1 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3a12 12 0 0 1-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg>
-            <div>
-              <p class="google-badge__label">Avaliações no Google</p>
-              <a class="google-badge__link" href="#" data-google-reviews target="_blank" rel="noopener" hidden>Ver todas as avaliações</a>
-            </div>
-          </div>
+    <!-- ===================== PORTFÓLIO ===================== -->
+    <section class="section portfolio" id="portfolio" aria-labelledby="portfolio-title" data-portfolio>
+      <svg class="vein" viewBox="0 0 760 420" aria-hidden="true" focusable="false"><path pathLength="1" d="M4 60 C 140 120 240 70 340 160 S 560 330 756 300"/><path pathLength="1" d="M30 20 C 170 90 280 40 390 120 S 600 270 740 250" opacity=".5"/></svg>
+      <div class="container portfolio__head">
+        <div>
+          <p class="eyebrow reveal">Portfólio</p>
+          <h2 class="section-title reveal" id="portfolio-title">Eventos que levam a nossa assinatura</h2>
         </div>
-
-        <!--
-          SUBSTITUIR: os três depoimentos abaixo são EXEMPLOS de layout.
-          Cole aqui avaliações reais do Perfil da Empresa no Google (nome, texto e tipo de evento)
-          e remova o atributo data-sample e o selo "Exemplo" de cada cartão.
-        -->
-        <ul class="reviews__list" role="list">
-          <li class="review-card reveal" data-sample>
-            <span class="badge-sample">Exemplo</span>
-            <p class="stars" role="img" aria-label="5 de 5 estrelas">★★★★★</p>
-            <blockquote class="review-card__quote"><p>A ilha de frios foi o assunto da festa. Tudo impecável, da montagem ao atendimento da equipe.</p></blockquote>
-            <div class="review-card__author">
-              <span class="avatar" aria-hidden="true">A</span>
-              <div>
-                <p class="review-card__name">Nome do cliente</p>
-                <p class="review-card__meta">Aniversário · Google</p>
-              </div>
-            </div>
-          </li>
-          <li class="review-card reveal" data-sample style="--delay: .1s">
-            <span class="badge-sample">Exemplo</span>
-            <p class="stars" role="img" aria-label="5 de 5 estrelas">★★★★★</p>
-            <blockquote class="review-card__quote"><p>Contratamos o coffee break para um evento da empresa. Pontualidade, capricho e muito sabor.</p></blockquote>
-            <div class="review-card__author">
-              <span class="avatar" aria-hidden="true">B</span>
-              <div>
-                <p class="review-card__name">Nome do cliente</p>
-                <p class="review-card__meta">Evento corporativo · Google</p>
-              </div>
-            </div>
-          </li>
-          <li class="review-card reveal" data-sample style="--delay: .2s">
-            <span class="badge-sample">Exemplo</span>
-            <p class="stars" role="img" aria-label="5 de 5 estrelas">★★★★★</p>
-            <blockquote class="review-card__quote"><p>Os finger foods estavam deliciosos e a mesa de doces com gelo seco encantou os convidados.</p></blockquote>
-            <div class="review-card__author">
-              <span class="avatar" aria-hidden="true">C</span>
-              <div>
-                <p class="review-card__name">Nome do cliente</p>
-                <p class="review-card__meta">Casamento · Google</p>
-              </div>
-            </div>
-          </li>
-        </ul>
+        <p class="reveal">Fotos reais de eventos preparados pela CJR Gastronomia. Filtre por categoria e toque em uma foto para ampliar.</p>
+      </div>
+      <div class="container spotlight reveal" data-spotlight aria-roledescription="carrossel" aria-label="Os favoritos do Chef">
+        <div class="spotlight__stage"><ul class="spotlight__slides" role="list" data-spotlight-slides></ul></div>
+        <div class="spotlight__info">
+          <p class="eyebrow">Os favoritos do Chef</p>
+          <p class="spotlight__count" aria-hidden="true"><span data-spotlight-current>01</span><span class="spotlight__sep">/</span><span data-spotlight-total>08</span></p>
+          <h3 class="spotlight__title" data-spotlight-title aria-live="polite"></h3>
+          <p class="spotlight__cat" data-spotlight-cat></p>
+          <div class="spotlight__progress" aria-hidden="true"><span data-spotlight-bar></span></div>
+          <div class="spotlight__controls">
+            <button class="icon-btn" type="button" data-spotlight-prev aria-label="Prato anterior"><svg aria-hidden="true"><use href="#i-arrow-left"/></svg></button>
+            <button class="icon-btn" type="button" data-spotlight-pause aria-pressed="false" aria-label="Pausar destaques"><svg aria-hidden="true"><use href="#i-pause"/></svg></button>
+            <button class="icon-btn" type="button" data-spotlight-next aria-label="Próximo prato"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+          </div>
+          <button class="btn btn--gold" type="button" data-quote-add><svg aria-hidden="true"><use href="#i-plus"/></svg><span data-spotlight-add>Adicionar ao orçamento</span></button>
+        </div>
+      </div>
+      <div class="container portfolio__toolbar reveal">
+        <div class="filters" role="group" aria-label="Filtrar fotos por categoria" data-portfolio-filters></div>
+        <button class="btn btn--outline portfolio__pause" type="button" aria-pressed="false" data-portfolio-pause>
+          <svg aria-hidden="true"><use href="#i-pause"/></svg><span data-portfolio-pause-label>Pausar animação</span>
+        </button>
+      </div>
+      <div class="marquee" aria-label="Fotos do portfólio, primeira faixa" role="region"><ul class="marquee__track" role="list"></ul></div>
+      <div class="marquee marquee--reverse" aria-label="Fotos do portfólio, segunda faixa" role="region"><ul class="marquee__track" role="list"></ul></div>
+      <div class="container portfolio__foot">
+        <p class="portfolio__count" aria-live="polite" data-portfolio-count></p>
+        <button class="btn btn--dark" type="button" data-portfolio-all><svg aria-hidden="true"><use href="#i-photos"/></svg>Ver em tela cheia</button>
       </div>
     </section>
 
-    <!-- ===================== RECURSO FUTURO: WORKSHOPS CORPORATIVOS =====================
-         Oculto. Para exibir: assets/js/config.js → features.workshops = true
-         Mapa: incorpore um Google My Maps (iframe) ou Leaflet dentro de [data-company-map]
-         e liste as empresas atendidas em [data-company-list]. -->
+    <!-- ===================== RECURSO FUTURO: WORKSHOPS CORPORATIVOS (oculto) =====================
+         Para exibir: assets/js/config.js → features.workshops = true.
+         Mapa: incorpore um Google My Maps (iframe) ou Leaflet em [data-company-map] e liste as empresas em [data-company-list]
+         (somente com autorização de cada empresa para uso do nome/marca). -->
     <section class="section workshops" id="workshops" data-feature="workshops" hidden aria-labelledby="workshops-title">
       <div class="container">
         <p class="eyebrow">Para empresas</p>
         <h2 class="section-title" id="workshops-title">Workshops corporativos</h2>
-        <p class="workshops__intro">Experiências gastronômicas conduzidas pelo Chef para integrar equipes, celebrar resultados e receber clientes.</p>
-        <div class="workshops__grid">
-          <div class="company-map" data-company-map role="img" aria-label="Mapa das empresas atendidas">
-            <p>Mapa das empresas atendidas</p>
-          </div>
-          <ul class="company-list" role="list" data-company-list>
-            <!-- <li data-lat="-27.59" data-lng="-48.55">Nome da empresa · Cidade</li> -->
-          </ul>
-        </div>
-        <a class="btn btn--dark" href="https://wa.me/5548996835439" data-whatsapp data-message="Olá, Chef Carlos! Gostaria de uma proposta de workshop corporativo.">Solicitar proposta de workshop</a>
+        <p class="lead">Experiências gastronômicas conduzidas pelo Chef para integrar equipes, celebrar resultados e receber clientes.</p>
+        <div class="company-map" data-company-map role="img" aria-label="Mapa das empresas atendidas"></div>
+        <ul class="chips" role="list" data-company-list></ul>
+        <a class="btn btn--dark" href="https://wa.me/5548996835439" data-whatsapp data-cta="workshops" data-message="Olá, Chef Carlos! Gostaria de uma proposta de workshop corporativo.">Solicitar proposta de workshop</a>
       </div>
     </section>
 
-    <!-- ===================== RECURSO FUTURO: CURSOS DO CHEF (HOTMART) =====================
-         Oculto. Para exibir: assets/js/config.js → features.cursos = true
-         Em cada curso, preencha data-hotmart-url com o link de checkout (https://pay.hotmart.com/XXXX).
-         Para o checkout em janela sobreposta, adicione o widget oficial da Hotmart antes de </body>. -->
-    <section class="section courses" id="cursos" data-feature="cursos" hidden aria-labelledby="courses-title">
+    <!-- ===================== RECURSO FUTURO: CURSOS DO CHEF · HOTMART (oculto) =====================
+         Para exibir: assets/js/config.js → features.cursos = true.
+         Em cada curso, troque o href pelo link de checkout da Hotmart (https://pay.hotmart.com/XXXX). -->
+    <section class="section courses on-dark" id="cursos" data-feature="cursos" hidden aria-labelledby="courses-title">
       <div class="container">
-        <p class="eyebrow eyebrow--gold">Aprenda com o Chef</p>
-        <h2 class="section-title section-title--light" id="courses-title">Cursos do Chef</h2>
-        <ul class="courses__grid" role="list">
-          <li class="course-card" data-hotmart-url="">
-            <h3 class="course-card__title">Nome do curso</h3>
-            <p class="course-card__text">Descrição breve do curso, carga horária e o que o aluno vai aprender.</p>
-            <a class="btn btn--gold" href="#" data-hotmart-link>Quero me inscrever</a>
-          </li>
-        </ul>
+        <p class="eyebrow">Aprenda com o Chef</p>
+        <h2 class="section-title" id="courses-title">Cursos do Chef</h2>
+        <ul class="chips" role="list"><li class="chip"><a href="#" rel="noopener">Nome do curso · Hotmart</a></li></ul>
+      </div>
+    </section>
+
+
+    <!-- ===================== ORÇAMENTO ===================== -->
+    <section class="section contact on-dark" id="orcamento" aria-labelledby="contact-title">
+      <div class="container contact__grid">
+        <div class="contact__intro">
+          <p class="eyebrow reveal">Orçamento</p>
+          <h2 class="section-title reveal" id="contact-title">Vamos criar uma experiência gastronômica exclusiva para o seu evento?</h2>
+          <p class="lead reveal">Conte-nos sobre sua ideia e solicite um orçamento personalizado. Nossa equipe está pronta para transformar seu evento em um momento único, com sabor, sofisticação e excelência em cada detalhe.</p>
+          <ul class="contact-list reveal" role="list">
+            <li><a href="https://wa.me/5548996835439" data-whatsapp data-cta="contato-direto"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg>(48) 99683-5439</a></li>
+            <li><a href="https://www.instagram.com/chefcarlosjr_gastronomia/" target="_blank" rel="noopener" data-instagram><svg aria-hidden="true"><use href="#i-instagram"/></svg>@chefcarlosjr_gastronomia</a></li>
+          </ul>
+        </div>
+        <div class="form-card reveal">
+          <h3 class="form-card__title" id="form-inicio-title">Solicitar orçamento</h3>
+          <form id="form-inicio" data-lead-form data-show-services data-cta="form-inicio" aria-labelledby="form-inicio-title"></form>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===================== AVALIAÇÕES ===================== -->
+    <section class="section reviews" id="avaliacoes" aria-labelledby="reviews-title" data-reviews>
+      <svg class="vein" viewBox="0 0 760 420" aria-hidden="true" focusable="false"><path pathLength="1" d="M10 300 C 180 240 260 300 380 210 S 590 70 752 110"/></svg>
+      <div class="container reviews__head">
+        <div>
+          <p class="eyebrow reveal">Avaliações</p>
+          <h2 class="section-title reveal" id="reviews-title">O que dizem nossos clientes</h2>
+        </div>
+        <div class="reviews__summary reveal" data-reviews-summary hidden>
+          <p class="reviews__score"><strong data-reviews-score></strong><span class="reviews__stars" aria-hidden="true">★★★★★</span></p>
+          <p class="reviews__total"><span data-reviews-total></span> avaliações no Google</p>
+          <a class="link-arrow" href="#" data-reviews-all target="_blank" rel="noopener">Ver todas no Google</a>
+        </div>
+      </div>
+      <div class="carousel" data-carousel hidden>
+        <ul class="carousel__track" role="list" tabindex="0" data-carousel-track aria-label="Avaliações de clientes (use as setas do teclado para rolar)"></ul>
+        <div class="container carousel__controls">
+          <div class="carousel__progress" aria-hidden="true"><span data-carousel-bar></span></div>
+          <p class="carousel__count" aria-hidden="true"><span data-carousel-current>01</span> / <span data-carousel-total>01</span></p>
+          <div class="carousel__buttons">
+            <button class="icon-btn" type="button" data-carousel-prev aria-label="Avaliação anterior"><svg aria-hidden="true"><use href="#i-arrow-left"/></svg></button>
+            <button class="icon-btn" type="button" data-carousel-next aria-label="Próxima avaliação"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="reviews__empty reveal" data-reviews-empty hidden>
+          <h3>A sua opinião faz parte da nossa história</h3>
+          <p>Em breve, os depoimentos de quem já viveu um evento com a CJR Gastronomia aparecerão aqui. Já foi nosso cliente? Conte como foi a sua experiência.</p>
+          <a class="btn btn--dark" href="contato.html" data-reviews-cta>Deixar minha avaliação</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- ===================== RODAPÉ + FORMULÁRIO ===================== -->
-  <footer class="site-footer" id="contato" aria-labelledby="contact-title">
-    <div class="container footer__grid">
-      <div class="footer__intro">
-        <p class="eyebrow eyebrow--gold reveal">Orçamento</p>
-        <h2 class="section-title section-title--light reveal" id="contact-title">Vamos planejar o seu evento</h2>
-        <p class="reveal">Conte alguns detalhes e receba a proposta do Chef pelo WhatsApp. Atendimento personalizado e sem compromisso, em Florianópolis e região.</p>
-        <ul class="contact-list reveal" role="list">
-          <li>
-            <a href="https://wa.me/5548996835439" data-whatsapp data-message="Olá, Chef Carlos! Vim pelo site e gostaria de conversar sobre um evento.">
-              <svg aria-hidden="true"><use href="#i-whatsapp"/></svg>(48) 99683-5439
-            </a>
-          </li>
-          <li>
-            <a href="https://www.instagram.com/chefcarlosjr_gastronomia/" target="_blank" rel="noopener" data-instagram>
-              <svg aria-hidden="true"><use href="#i-instagram"/></svg>@chefcarlosjr_gastronomia
-            </a>
-          </li>
-        </ul>
+  <!-- ===================== RODAPÉ PADRÃO ===================== -->
+  <footer class="site-footer" id="rodape">
+    <div class="container footer__top">
+      <div class="footer__brand">
+        <img src="assets/logo/logo-claro.png" alt="Chef Carlos Jr Gastronomia" width="520" height="251" loading="lazy">
+        <p>Experiências gastronômicas para eventos sociais e corporativos.</p>
       </div>
-
-      <form class="quote-form reveal" id="quote-form" novalidate data-quote-form aria-labelledby="form-title">
-        <h3 class="quote-form__title" id="form-title">Solicitar orçamento</h3>
-
-        <div class="field">
-          <label for="f-nome">Nome completo</label>
-          <input id="f-nome" name="nome" type="text" autocomplete="name" maxlength="80" required aria-describedby="f-nome-erro">
-          <p class="field__error" id="f-nome-erro"></p>
-        </div>
-
-        <div class="field-row">
-          <div class="field">
-            <label for="f-telefone">Telefone / WhatsApp</label>
-            <input id="f-telefone" name="telefone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="(48) 99999-9999" maxlength="16" required aria-describedby="f-telefone-erro">
-            <p class="field__error" id="f-telefone-erro"></p>
-          </div>
-          <div class="field">
-            <label for="f-email">E-mail <span class="field__optional">(opcional)</span></label>
-            <input id="f-email" name="email" type="email" autocomplete="email" maxlength="120" aria-describedby="f-email-erro">
-            <p class="field__error" id="f-email-erro"></p>
-          </div>
-        </div>
-
-        <div class="field-row">
-          <div class="field">
-            <label for="f-tipo">Tipo de evento</label>
-            <select id="f-tipo" name="tipo" required aria-describedby="f-tipo-erro">
-              <option value="">Selecione</option>
-              <option>Casamento</option>
-              <option>Aniversário</option>
-              <option>Bodas</option>
-              <option>Evento corporativo</option>
-              <option>Coffee break</option>
-              <option>Confraternização</option>
-              <option>Batizado ou chá</option>
-              <option>Outro</option>
-            </select>
-            <p class="field__error" id="f-tipo-erro"></p>
-          </div>
-          <div class="field">
-            <label for="f-data">Data do evento</label>
-            <input id="f-data" name="data" type="date" required aria-describedby="f-data-erro">
-            <p class="field__error" id="f-data-erro"></p>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="f-convidados">Número de convidados</label>
-          <input id="f-convidados" name="convidados" type="number" inputmode="numeric" min="1" max="5000" step="1" required aria-describedby="f-convidados-erro">
-          <p class="field__error" id="f-convidados-erro"></p>
-        </div>
-
-        <div class="form-services" data-form-services>
-          <p class="form-services__label">Serviços de interesse</p>
-          <ul class="chips" role="list" data-form-services-list></ul>
-          <p class="form-services__empty" data-form-services-empty>Nenhum serviço escolhido ainda.</p>
-          <button class="text-btn" type="button" data-quote-open aria-controls="quote-drawer" aria-expanded="false">Escolher ou editar serviços</button>
-        </div>
-
-        <button class="btn btn--gold btn--lg btn--block" type="submit">
-          <svg aria-hidden="true"><use href="#i-whatsapp"/></svg>
-          Enviar pelo WhatsApp
-        </button>
-        <p class="quote-form__note">Ao enviar, o WhatsApp abre com a sua mensagem pronta. Nada é armazenado neste site.</p>
-        <p class="form-status" role="status" data-form-status hidden></p>
-      </form>
-    </div>
-
-    <div class="container footer__bottom">
-      <img src="assets/logo/logo-claro.png" alt="Chef Carlos Jr Gastronomia" width="520" height="251" loading="lazy">
-      <nav class="footer-nav" aria-label="Links do rodapé">
-        <ul role="list">
-          <li><a href="#sobre">Sobre</a></li>
+      <nav aria-labelledby="footer-nav-title">
+        <p class="footer__title" id="footer-nav-title">Navegação</p>
+        <ul class="footer__list" role="list">
+          <li><a href="#quem-somos">Quem somos</a></li>
           <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#portfolio">Portfólio</a></li>
           <li><a href="#avaliacoes">Avaliações</a></li>
-          <li><a href="https://www.instagram.com/chefcarlosjr_gastronomia/" target="_blank" rel="noopener" data-instagram>Instagram</a></li>
+          <li><a href="contato.html">Contato</a></li>
         </ul>
       </nav>
-      <p class="footer__copy">© <span data-year>2026</span> Chef Carlos Jr Gastronomia. Todos os direitos reservados.</p>
+      <nav aria-labelledby="footer-legal-title">
+        <p class="footer__title" id="footer-legal-title">Políticas</p>
+        <ul class="footer__list" role="list">
+          <li><a href="privacidade.html">Política de Privacidade</a></li>
+          <li><a href="termos.html">Termos de Serviço</a></li>
+          <li><a href="cookies.html">Política de Cookies</a></li>
+          <li><a href="reembolso.html">Cancelamento e Reembolso</a></li>
+          <li><button type="button" data-cookie-prefs>Preferências de cookies</button></li>
+        </ul>
+      </nav>
+      <div>
+        <p class="footer__title">Atendimento</p>
+        <ul class="footer__list" role="list">
+          <li><a href="https://wa.me/5548996835439" data-whatsapp data-cta="rodape"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg>(48) 99683-5439</a></li>
+          <li><a href="https://www.instagram.com/chefcarlosjr_gastronomia/" target="_blank" rel="noopener" data-instagram><svg aria-hidden="true"><use href="#i-instagram"/></svg>@chefcarlosjr_gastronomia</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer__legal">
+      <p>© <span data-year>2026</span> CJR Gastronomia. Todos os direitos reservados.</p>
+      <p data-legal-line></p>
     </div>
   </footer>
 
-  <!-- ===================== GAVETA "MEU ORÇAMENTO" ===================== -->
-  <div class="drawer-backdrop" data-drawer-backdrop hidden></div>
-  <aside class="drawer" id="quote-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" hidden data-drawer>
-    <div class="drawer__head">
-      <div>
-        <p class="eyebrow">Sua seleção</p>
-        <h2 class="drawer__title" id="drawer-title">Meu orçamento</h2>
-      </div>
-      <button class="icon-btn icon-btn--dark" type="button" data-drawer-close aria-label="Fechar orçamento"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
-    </div>
+  <aside aria-label="Atendimento pelo WhatsApp">
 
-    <div class="drawer__body">
-      <p class="drawer__empty" data-drawer-empty>Você ainda não adicionou serviços. Escolha abaixo o que deseja para o seu evento.</p>
-      <ul class="drawer__list" role="list" data-drawer-list></ul>
-      <div class="drawer__suggest" data-drawer-suggest>
-        <p class="drawer__subtitle" data-drawer-suggest-title>Adicionar também</p>
-        <ul class="suggest-list" role="list" data-drawer-suggest-list></ul>
-      </div>
-    </div>
+    <a class="wa-float" href="https://wa.me/5548996835439" data-whatsapp data-cta="flutuante-inicio" aria-label="Fale com o Chef pelo WhatsApp">
+      <span class="wa-float__label" aria-hidden="true">Fale com o Chef</span>
+      <span class="wa-float__icon" aria-hidden="true"><svg><use href="#i-whatsapp"/></svg></span>
+    </a>
 
-    <div class="drawer__foot">
-      <a class="btn btn--dark btn--block" href="https://wa.me/5548996835439" data-drawer-whatsapp target="_blank" rel="noopener">
-        <svg aria-hidden="true"><use href="#i-whatsapp"/></svg>
-        <span data-drawer-whatsapp-label>Enviar seleção pelo WhatsApp</span>
-      </a>
-      <a class="btn btn--outline btn--block" href="#contato" data-drawer-form>Informar dados do evento</a>
-    </div>
   </aside>
-
-  <!-- ===================== GALERIA (LIGHTBOX) ===================== -->
-  <dialog class="lightbox" data-lightbox aria-labelledby="lightbox-title">
-    <div class="lightbox__head">
-      <div>
-        <h2 class="lightbox__title" id="lightbox-title" data-lightbox-title></h2>
-        <p class="lightbox__count" data-lightbox-count></p>
-      </div>
-      <button class="icon-btn" type="button" data-lightbox-close aria-label="Fechar galeria"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
-    </div>
-    <div class="lightbox__stage" data-lightbox-stage>
-      <figure class="lightbox__figure">
-        <img class="lightbox__img" data-lightbox-img src="" alt="">
-        <figcaption class="lightbox__caption" data-lightbox-caption></figcaption>
-      </figure>
-      <button class="icon-btn lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Foto anterior"><svg aria-hidden="true"><use href="#i-arrow-left"/></svg></button>
-      <button class="icon-btn lightbox__nav lightbox__nav--next" type="button" data-lightbox-next aria-label="Próxima foto"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
-    </div>
-    <div class="lightbox__foot">
-      <button class="btn btn--gold" type="button" data-lightbox-add>
-        <svg aria-hidden="true"><use href="#i-plus"/></svg>
-        <span data-lightbox-add-label>Adicionar ao orçamento</span>
-      </button>
-    </div>
-  </dialog>
-
-  <!-- ===================== WHATSAPP FLUTUANTE ===================== -->
-  <a class="wa-float" href="https://wa.me/5548996835439" data-whatsapp data-message="Olá, Chef Carlos! Vim pelo site e gostaria de conversar sobre um evento.">
-    <span class="wa-float__label">Fale com o Chef</span>
-    <span class="wa-float__icon"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg></span>
-    <span class="sr-only">pelo WhatsApp</span>
-  </a>
-
   <p class="sr-only" aria-live="polite" data-announcer></p>
 </body>
 </html>

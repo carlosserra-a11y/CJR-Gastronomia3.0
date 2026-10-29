@@ -1,4 +1,4 @@
-/* Lista "Meu orçamento": estado, persistência e gaveta lateral. */
+/* "Meu orçamento": serviços escolhidos + detalhes do evento numa gaveta lateral. */
 (function (site) {
   'use strict';
 
@@ -6,9 +6,7 @@
   site.scrollLock = Object.freeze({
     lock() {
       const root = document.documentElement;
-      if (!document.body.classList.contains('is-locked')) {
-        root.style.setProperty('--scrollbar-w', `${window.innerWidth - root.clientWidth}px`);
-      }
+      if (!document.body.classList.contains('is-locked')) root.style.setProperty('--scrollbar-w', `${window.innerWidth - root.clientWidth}px`);
       document.body.classList.add('is-locked');
     },
     unlock() {
@@ -18,22 +16,21 @@
 
   const STORAGE_KEY = 'ccj-orcamento';
   const CLOSE_DELAY_MS = 450;
-  const FOCUSABLE = 'a[href], button:not([disabled]), input, select, [tabindex]:not([tabindex="-1"])';
-
-  /** @type {{ id: string, name: string, cover: string }[]} */
-  let catalog = [];
-  /** @type {string[]} */
   let selected = [];
   let lastTrigger = null;
   let closeTimer = 0;
+  let inertNodes = [];
   const els = {};
 
-  /* ---------- Estado ---------- */
+  const catalog = () => site.config.services;
+  const findService = (id) => catalog().find((service) => service.id === id);
+  const has = (id) => selected.includes(id);
+  const items = () => selected.map(findService).filter(Boolean);
 
   function readStorage() {
     try {
       const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-      return Array.isArray(parsed) ? parsed.filter((id) => typeof id === 'string') : [];
+      return Array.isArray(parsed) ? parsed.filter((id) => typeof id === 'string' && findService(id)) : [];
     } catch (err) {
       return [];
     }
@@ -43,20 +40,8 @@
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
     } catch (err) {
-      // Armazenamento indisponível (aba anônima, por exemplo): a lista vale só para esta visita.
+      // Sem armazenamento (aba anônima, por exemplo): a lista vale só para esta visita.
     }
-  }
-
-  function findService(id) {
-    return catalog.find((service) => service.id === id);
-  }
-
-  function items() {
-    return selected.map(findService).filter(Boolean);
-  }
-
-  function has(id) {
-    return selected.includes(id);
   }
 
   function setSelected(next) {
@@ -66,11 +51,20 @@
     document.dispatchEvent(new CustomEvent('quote:change', { detail: { items: items() } }));
   }
 
+  function announce(text) {
+    const live = document.querySelector('[data-announcer]');
+    if (live) live.textContent = text;
+  }
+
   function add(id) {
     if (has(id) || !findService(id)) return;
     setSelected([...selected, id]);
     announce(`${findService(id).name} adicionado ao orçamento.`);
-    bumpCount();
+    document.querySelectorAll('[data-quote-count-badge]').forEach((badge) => {
+      badge.classList.remove('is-bump');
+      void badge.offsetWidth; // reinicia a animação
+      badge.classList.add('is-bump');
+    });
   }
 
   function remove(id) {
@@ -79,123 +73,97 @@
     announce(`${findService(id).name} removido do orçamento.`);
   }
 
-  /* ---------- Renderização ---------- */
-
-  function announce(text) {
-    if (els.announcer) els.announcer.textContent = text;
+  /* ---------- Construção da gaveta ---------- */
+  function buildDrawer() {
+    const backdrop = document.createElement('div');
+    backdrop.className = 'drawer-backdrop';
+    backdrop.hidden = true;
+    const drawer = document.createElement('div');
+    drawer.className = 'drawer';
+    drawer.id = 'quote-drawer';
+    drawer.hidden = true;
+    drawer.setAttribute('role', 'dialog');
+    drawer.setAttribute('aria-modal', 'true');
+    drawer.setAttribute('aria-labelledby', 'drawer-title');
+    drawer.innerHTML = `
+      <div class="drawer__head">
+        <div><p class="eyebrow">Orçamento personalizado</p><h2 class="drawer__title" id="drawer-title">Meu orçamento</h2></div>
+        <button class="icon-btn" type="button" data-drawer-close aria-label="Fechar orçamento"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+      </div>
+      <div class="drawer__body">
+        <p class="drawer__step"><span>1</span>Serviços escolhidos</p>
+        <p class="drawer__empty" data-drawer-empty>Você ainda não escolheu serviços. Selecione abaixo o que deseja para o seu evento.</p>
+        <ul class="drawer__list" role="list" data-drawer-list></ul>
+        <details class="drawer__suggest" data-drawer-suggest><summary data-drawer-suggest-title>Adicionar outros serviços</summary><ul class="suggest-list" role="list" data-drawer-suggest-list></ul></details>
+        <p class="drawer__step"><span>2</span>Detalhes do evento</p>
+        <form id="drawer-form" data-lead-form data-external-submit data-cta="gaveta-orcamento" aria-label="Detalhes do evento"></form>
+      </div>
+      <div class="drawer__foot">
+        <button class="btn btn--dark btn--block btn--lg" type="submit" form="drawer-form"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg>Enviar pedido pelo WhatsApp</button>
+      </div>`;
+    document.body.append(backdrop, drawer);
+    drawer.querySelector('.drawer__foot').append(site.leadForm.buildPrivacyNote());
+    return { drawer, backdrop };
   }
 
-  function bumpCount() {
-    els.badges.forEach((badge) => {
-      badge.classList.remove('is-bump');
-      void badge.offsetWidth; // reinicia a animação
-      badge.classList.add('is-bump');
-    });
-  }
-
-  function buildDrawerItem(service) {
+  function buildDrawerItem(service, index) {
     const li = document.createElement('li');
     li.className = 'drawer-item';
-
-    const img = document.createElement('img');
-    img.src = service.cover;
-    img.alt = '';
-    img.width = 68;
-    img.height = 68;
-
-    const name = document.createElement('p');
-    name.className = 'drawer-item__name';
-    name.textContent = service.name;
-
-    const removeBtn = document.createElement('button');
-    removeBtn.type = 'button';
-    removeBtn.className = 'drawer-item__remove';
-    removeBtn.textContent = 'Remover';
+    li.innerHTML = '<img alt="" width="60" height="60"><p class="drawer-item__name"><span class="drawer-item__num"></span></p><button type="button" class="drawer-item__remove">Remover</button>';
+    li.querySelector('img').src = service.cover;
+    li.querySelector('.drawer-item__num').textContent = `Serviço ${index + 1}`;
+    li.querySelector('.drawer-item__name').append(service.name);
+    const removeBtn = li.querySelector('button');
     removeBtn.setAttribute('aria-label', `Remover ${service.name}`);
-    removeBtn.addEventListener('click', () => {
-      remove(service.id);
-      els.close.focus();
-    });
-
-    li.append(img, name, removeBtn);
+    removeBtn.addEventListener('click', () => { remove(service.id); els.close.focus(); });
     return li;
   }
 
   function buildSuggestItem(service) {
     const li = document.createElement('li');
     li.className = 'suggest-item';
-
-    const name = document.createElement('span');
-    name.textContent = service.name;
-
-    const addBtn = document.createElement('button');
-    addBtn.type = 'button';
-    addBtn.className = 'text-btn';
-    addBtn.textContent = '+ Adicionar';
+    li.innerHTML = '<span></span><button type="button" class="text-btn">+ Adicionar</button>';
+    li.querySelector('span').textContent = service.name;
+    const addBtn = li.querySelector('button');
     addBtn.setAttribute('aria-label', `Adicionar ${service.name}`);
-    addBtn.addEventListener('click', () => {
-      add(service.id);
-      els.close.focus();
-    });
-
-    li.append(name, addBtn);
+    addBtn.addEventListener('click', () => { add(service.id); els.close.focus(); });
     return li;
-  }
-
-  function quoteMessage() {
-    const chosen = items();
-    if (!chosen.length) return site.config.defaultMessage;
-    const lines = chosen.map((service) => `• ${service.name}`).join('\n');
-    return `Olá, Chef Carlos! Montei uma seleção no site e gostaria de um orçamento:\n\n${lines}\n\nPodemos conversar sobre data e número de convidados?`;
-  }
-
-  function renderDrawer(chosen) {
-    els.list.replaceChildren(...chosen.map(buildDrawerItem));
-    els.empty.hidden = chosen.length > 0;
-
-    const remaining = catalog.filter((service) => !has(service.id));
-    els.suggestList.replaceChildren(...remaining.map(buildSuggestItem));
-    els.suggest.hidden = remaining.length === 0;
-    els.suggestTitle.textContent = chosen.length ? 'Adicionar também' : 'Serviços disponíveis';
-
-    els.whatsapp.href = site.whatsapp.buildUrl(quoteMessage());
-    els.whatsappLabel.textContent = chosen.length ? 'Enviar seleção pelo WhatsApp' : 'Falar com o Chef pelo WhatsApp';
   }
 
   function render() {
     const chosen = items();
-    els.counts.forEach((count) => { count.textContent = String(chosen.length); });
-    els.cards.forEach((card) => card.classList.toggle('is-added', has(card.dataset.service)));
-    renderDrawer(chosen);
+    document.querySelectorAll('[data-quote-count]').forEach((count) => { count.textContent = String(chosen.length); });
+    document.querySelectorAll('[data-quote-count-label]').forEach((label) => { label.textContent = chosen.length === 1 ? ' serviço' : ' serviços'; });
+    document.querySelectorAll('.service-card[data-service]').forEach((card) => card.classList.toggle('is-added', has(card.dataset.service)));
+    if (!els.drawer) return;
+    els.list.replaceChildren(...chosen.map(buildDrawerItem));
+    els.empty.hidden = chosen.length > 0;
+    const remaining = catalog().filter((service) => !has(service.id));
+    els.suggestList.replaceChildren(...remaining.map(buildSuggestItem));
+    els.suggest.hidden = remaining.length === 0;
+    els.suggest.open = chosen.length === 0;
+    els.suggestTitle.textContent = chosen.length ? 'Adicionar outros serviços' : 'Escolher serviços';
   }
 
-  /* ---------- Gaveta ---------- */
-
-  function setExpanded(isOpen) {
-    els.openers.forEach((btn) => btn.setAttribute('aria-expanded', String(isOpen)));
-  }
-
-  function trapFocus(event) {
-    const focusables = Array.from(els.drawer.querySelectorAll(FOCUSABLE)).filter((el) => el.offsetParent !== null);
-    if (!focusables.length) return;
-    const first = focusables[0];
-    const last = focusables[focusables.length - 1];
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault();
-      first.focus();
+  /* ---------- Abrir / fechar ---------- */
+  function setBackgroundInert(isInert) {
+    if (isInert) {
+      inertNodes = Array.from(document.body.children).filter((node) => node !== els.drawer && node !== els.backdrop && !node.matches('script, [data-announcer]'));
+      inertNodes.forEach((node) => { node.inert = true; });
+    } else {
+      inertNodes.forEach((node) => { node.inert = false; });
+      inertNodes = [];
     }
   }
 
-  function onKeydown(event) {
-    if (event.key === 'Escape') close();
-    if (event.key === 'Tab') trapFocus(event);
+  function setExpanded(isOpen) {
+    document.querySelectorAll('[data-quote-open]').forEach((btn) => btn.setAttribute('aria-expanded', String(isOpen)));
   }
 
-  function isOpen() {
-    return els.drawer.classList.contains('is-open');
+  const isOpen = () => Boolean(els.drawer) && els.drawer.classList.contains('is-open');
+
+  function onKeydown(event) {
+    if (event.key === 'Escape') close();
   }
 
   function open(trigger) {
@@ -208,6 +176,7 @@
     void els.drawer.offsetWidth; // garante a transição após remover [hidden]
     els.drawer.classList.add('is-open');
     els.backdrop.classList.add('is-open');
+    setBackgroundInert(true);
     setExpanded(true);
     document.addEventListener('keydown', onKeydown);
     els.close.focus();
@@ -217,77 +186,45 @@
     if (!isOpen()) return;
     els.drawer.classList.remove('is-open');
     els.backdrop.classList.remove('is-open');
+    setBackgroundInert(false);
     site.scrollLock.unlock();
     setExpanded(false);
     document.removeEventListener('keydown', onKeydown);
-    closeTimer = window.setTimeout(() => {
-      els.drawer.hidden = true;
-      els.backdrop.hidden = true;
-    }, CLOSE_DELAY_MS);
-    if (options.restoreFocus !== false && lastTrigger) lastTrigger.focus();
-  }
-
-  function goToForm(event) {
-    event.preventDefault();
-    close({ restoreFocus: false });
-    const form = document.getElementById('contato');
-    const firstField = document.getElementById('f-nome');
-    requestAnimationFrame(() => {
-      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      if (firstField) firstField.focus({ preventScroll: true });
-    });
+    closeTimer = window.setTimeout(() => { els.drawer.hidden = true; els.backdrop.hidden = true; }, CLOSE_DELAY_MS);
+    if (options.restoreFocus !== false && lastTrigger && document.contains(lastTrigger)) lastTrigger.focus();
   }
 
   /* ---------- Inicialização ---------- */
-
-  function readCatalog() {
-    return els.cards.map((card) => ({
-      id: card.dataset.service,
-      name: card.dataset.serviceName,
-      cover: card.querySelector('.service-card__media img').getAttribute('src'),
-    }));
-  }
-
-  function cacheElements() {
-    els.drawer = document.querySelector('[data-drawer]');
-    els.backdrop = document.querySelector('[data-drawer-backdrop]');
-    els.close = els.drawer.querySelector('[data-drawer-close]');
-    els.list = els.drawer.querySelector('[data-drawer-list]');
-    els.empty = els.drawer.querySelector('[data-drawer-empty]');
-    els.suggest = els.drawer.querySelector('[data-drawer-suggest]');
-    els.suggestTitle = els.drawer.querySelector('[data-drawer-suggest-title]');
-    els.suggestList = els.drawer.querySelector('[data-drawer-suggest-list]');
-    els.whatsapp = els.drawer.querySelector('[data-drawer-whatsapp]');
-    els.whatsappLabel = els.drawer.querySelector('[data-drawer-whatsapp-label]');
-    els.formLink = els.drawer.querySelector('[data-drawer-form]');
-    els.openers = Array.from(document.querySelectorAll('[data-quote-open]'));
-    els.counts = Array.from(document.querySelectorAll('[data-quote-count]'));
-    els.badges = Array.from(document.querySelectorAll('[data-quote-count-badge]'));
-    els.cards = Array.from(document.querySelectorAll('.service-card[data-service]'));
-    els.announcer = document.querySelector('[data-announcer]');
-  }
-
   function bindEvents() {
-    els.openers.forEach((btn) => btn.addEventListener('click', () => open(btn)));
+    document.addEventListener('click', (event) => {
+      const opener = event.target.closest('[data-quote-open]');
+      if (opener) { open(opener); return; }
+      const addBtn = event.target.closest('[data-quote-add]');
+      if (addBtn) {
+        add(addBtn.closest('[data-service]').dataset.service);
+        open(addBtn);
+      }
+    });
     els.close.addEventListener('click', () => close());
     els.backdrop.addEventListener('click', () => close());
-    els.formLink.addEventListener('click', goToForm);
-    els.cards.forEach((card) => {
-      const addBtn = card.querySelector('[data-quote-add]');
-      addBtn.addEventListener('click', () => {
-        add(card.dataset.service);
-        open(addBtn);
-      });
-    });
   }
 
   function init() {
-    cacheElements();
-    if (!els.drawer) return;
-    catalog = readCatalog();
-    selected = readStorage().filter((id) => findService(id));
+    const { drawer, backdrop } = buildDrawer();
+    Object.assign(els, {
+      drawer, backdrop,
+      close: drawer.querySelector('[data-drawer-close]'),
+      list: drawer.querySelector('[data-drawer-list]'),
+      empty: drawer.querySelector('[data-drawer-empty]'),
+      suggest: drawer.querySelector('[data-drawer-suggest]'),
+      suggestTitle: drawer.querySelector('[data-drawer-suggest-title]'),
+      suggestList: drawer.querySelector('[data-drawer-suggest-list]'),
+    });
+    site.leadForm.mount(drawer.querySelector('#drawer-form'));
+    selected = readStorage();
     bindEvents();
     render();
+    document.dispatchEvent(new CustomEvent('quote:change', { detail: { items: items() } }));
   }
 
   site.quote = Object.freeze({ init, add, remove, has, items, open, close });

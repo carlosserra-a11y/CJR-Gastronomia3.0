@@ -1,29 +1,53 @@
-/* Galeria em tela cheia para as fotos de cada serviço. */
+/* Galeria em tela cheia (serviços e portfólio). API: ChefSite.lightbox.open({ title, photos, index, serviceId, trigger }). */
 (function (site) {
   'use strict';
 
   const SWIPE_MIN_PX = 50;
-
   const els = {};
-  /** @type {{ src: string, alt: string }[]} */
+  /** @type {{ src: string, alt: string, thumb?: string }[]} */
   let photos = [];
   let index = 0;
   let serviceId = '';
   let lastTrigger = null;
   let handingOffToDrawer = false;
 
-  function readPhotos(card) {
-    const template = card.querySelector('template[data-gallery]');
-    if (!template) return [];
-    return Array.from(template.content.querySelectorAll('img')).map((img) => ({
-      src: img.getAttribute('src'),
-      alt: img.getAttribute('alt') || '',
-    }));
+  function build() {
+    const dialog = document.createElement('dialog');
+    dialog.className = 'lightbox';
+    dialog.setAttribute('aria-labelledby', 'lightbox-title');
+    dialog.innerHTML = `
+      <div class="lightbox__head">
+        <div><h2 class="lightbox__title" id="lightbox-title" data-lb-title></h2><p class="lightbox__count" data-lb-count aria-live="polite"></p></div>
+        <button class="icon-btn" type="button" data-lb-close aria-label="Fechar galeria"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+      </div>
+      <div class="lightbox__stage" data-lb-stage>
+        <figure class="lightbox__figure"><img class="lightbox__img" data-lb-img src="" alt=""><figcaption class="lightbox__caption" data-lb-caption aria-hidden="true"></figcaption></figure>
+        <button class="icon-btn lightbox__nav lightbox__nav--prev" type="button" data-lb-prev aria-label="Foto anterior"><svg aria-hidden="true"><use href="#i-arrow-left"/></svg></button>
+        <button class="icon-btn lightbox__nav lightbox__nav--next" type="button" data-lb-next aria-label="Próxima foto"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+      </div>
+      <ul class="lightbox__thumbs" role="list" data-lb-thumbs></ul>
+      <div class="lightbox__foot" data-lb-foot><button class="btn btn--gold" type="button" data-lb-add><svg aria-hidden="true"><use href="#i-plus"/></svg><span data-lb-add-label>Adicionar ao orçamento</span></button></div>`;
+    document.body.append(dialog);
+    const q = (sel) => dialog.querySelector(sel);
+    Object.assign(els, {
+      dialog, title: q('[data-lb-title]'), count: q('[data-lb-count]'), img: q('[data-lb-img]'), caption: q('[data-lb-caption]'),
+      prev: q('[data-lb-prev]'), next: q('[data-lb-next]'), close: q('[data-lb-close]'), thumbs: q('[data-lb-thumbs]'),
+      foot: q('[data-lb-foot]'), add: q('[data-lb-add]'), addLabel: q('[data-lb-add-label]'), stage: q('[data-lb-stage]'),
+    });
   }
 
-  function preload(position) {
-    const photo = photos[(position + photos.length) % photos.length];
-    if (photo) new Image().src = photo.src;
+  function renderThumbs() {
+    const buttons = photos.map((photo, i) => {
+      const li = document.createElement('li');
+      li.innerHTML = '<button type="button"><img alt="" loading="lazy"></button>';
+      li.querySelector('img').src = photo.thumb || photo.src;
+      const btn = li.querySelector('button');
+      btn.setAttribute('aria-label', `Ver foto ${i + 1} de ${photos.length}`);
+      btn.addEventListener('click', () => show(i));
+      return li;
+    });
+    els.thumbs.replaceChildren(...buttons);
+    els.thumbs.hidden = photos.length < 2;
   }
 
   function show(position) {
@@ -36,28 +60,26 @@
     els.img.classList.add('is-entering');
     els.caption.textContent = photo.alt;
     els.count.textContent = `Foto ${index + 1} de ${photos.length}`;
-    const single = photos.length < 2;
-    els.prev.hidden = single;
-    els.next.hidden = single;
-    preload(index + 1);
+    els.prev.hidden = photos.length < 2;
+    els.next.hidden = photos.length < 2;
+    els.thumbs.querySelectorAll('button').forEach((btn, i) => btn.setAttribute('aria-current', String(i === index)));
+    const nextPhoto = photos[(index + 1) % photos.length];
+    if (nextPhoto) new Image().src = nextPhoto.src;
   }
 
-  function updateAddButton() {
-    const added = site.quote.has(serviceId);
-    els.addLabel.textContent = added ? 'Ver meu orçamento' : 'Adicionar ao orçamento';
-  }
-
-  function openFor(card, trigger) {
-    photos = readPhotos(card);
-    if (!photos.length) return;
-    serviceId = card.dataset.service;
-    lastTrigger = trigger;
-    els.title.textContent = card.dataset.serviceName;
-    updateAddButton();
-    show(0);
-    site.scrollLock.lock();
+  function open(options) {
+    photos = options.photos || [];
+    if (!photos.length || typeof els.dialog.showModal !== 'function') return; // navegador sem <dialog>: não trava a página
+    serviceId = options.serviceId || '';
+    lastTrigger = options.trigger || document.activeElement;
+    els.title.textContent = options.title || 'Galeria';
+    els.foot.hidden = !serviceId;
+    if (serviceId) els.addLabel.textContent = site.quote.has(serviceId) ? 'Ver meu orçamento' : 'Adicionar ao orçamento';
+    renderThumbs();
+    show(options.index || 0);
     els.dialog.showModal();
-    els.closeBtn.focus();
+    site.scrollLock.lock();
+    els.close.focus();
   }
 
   function close() {
@@ -70,7 +92,7 @@
       return;
     }
     site.scrollLock.unlock();
-    if (lastTrigger) lastTrigger.focus();
+    if (lastTrigger && document.contains(lastTrigger)) lastTrigger.focus();
   }
 
   function onAdd() {
@@ -78,11 +100,6 @@
     site.quote.add(serviceId);
     close();
     site.quote.open(lastTrigger);
-  }
-
-  function onKeydown(event) {
-    if (event.key === 'ArrowRight') show(index + 1);
-    if (event.key === 'ArrowLeft') show(index - 1);
   }
 
   function enableSwipe(stage) {
@@ -96,39 +113,34 @@
     });
   }
 
-  function cacheElements() {
-    els.dialog = document.querySelector('[data-lightbox]');
-    if (!els.dialog) return false;
-    els.title = els.dialog.querySelector('[data-lightbox-title]');
-    els.count = els.dialog.querySelector('[data-lightbox-count]');
-    els.img = els.dialog.querySelector('[data-lightbox-img]');
-    els.caption = els.dialog.querySelector('[data-lightbox-caption]');
-    els.prev = els.dialog.querySelector('[data-lightbox-prev]');
-    els.next = els.dialog.querySelector('[data-lightbox-next]');
-    els.closeBtn = els.dialog.querySelector('[data-lightbox-close]');
-    els.add = els.dialog.querySelector('[data-lightbox-add]');
-    els.addLabel = els.dialog.querySelector('[data-lightbox-add-label]');
-    els.stage = els.dialog.querySelector('[data-lightbox-stage]');
-    return true;
+  /** Cartões de serviço: <template data-gallery> com as fotos de cada serviço. */
+  function bindServiceGalleries() {
+    document.querySelectorAll('.service-card [data-gallery-open]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.service-card');
+        const template = card.querySelector('template[data-gallery]');
+        const list = Array.from(template.content.querySelectorAll('img')).map((img) => ({ src: img.getAttribute('src'), alt: img.getAttribute('alt') || '' }));
+        open({ title: card.querySelector('.service-card__title').textContent, photos: list, serviceId: card.dataset.service, trigger: btn });
+      });
+    });
   }
 
   function init() {
-    if (!cacheElements() || typeof els.dialog.showModal !== 'function') return;
-
-    document.querySelectorAll('.service-card [data-gallery-open]').forEach((btn) => {
-      btn.addEventListener('click', () => openFor(btn.closest('.service-card'), btn));
-    });
+    build();
+    if (typeof els.dialog.showModal !== 'function') return;
     els.prev.addEventListener('click', () => show(index - 1));
     els.next.addEventListener('click', () => show(index + 1));
-    els.closeBtn.addEventListener('click', close);
+    els.close.addEventListener('click', close);
     els.add.addEventListener('click', onAdd);
-    els.dialog.addEventListener('keydown', onKeydown);
-    els.dialog.addEventListener('click', (event) => {
-      if (event.target === els.dialog) close();
+    els.dialog.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight') show(index + 1);
+      if (event.key === 'ArrowLeft') show(index - 1);
     });
+    els.dialog.addEventListener('click', (event) => { if (event.target === els.dialog) close(); });
     els.dialog.addEventListener('close', onClosed);
     enableSwipe(els.stage);
+    bindServiceGalleries();
   }
 
-  site.lightbox = Object.freeze({ init });
+  site.lightbox = Object.freeze({ init, open, close });
 })(window.ChefSite);

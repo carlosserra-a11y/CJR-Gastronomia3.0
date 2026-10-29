@@ -1,65 +1,121 @@
-# Chef Carlos Jr Gastronomia · Site (SPA)
+# CJR Gastronomia · Chef Carlos Jr — Site
 
-Site de página única para buffet premium, finger foods e eventos sociais e corporativos.
-Objetivo: apresentar o serviço com elegância e levar o visitante ao **pedido de orçamento pelo WhatsApp**.
+Site para experiências gastronômicas em eventos sociais e corporativos. O objetivo é levar o visitante a um **pedido de orçamento completo pelo WhatsApp**.
 
-HTML, CSS e JavaScript puros, **sem etapa de build**: basta publicar a pasta (Netlify, Vercel, Hostinger ou qualquer hospedagem estática).
+HTML, CSS e JavaScript puros, **sem etapa de build**: publique a pasta em qualquer hospedagem estática (Netlify, Vercel, Hostinger).
+
+## Páginas
+
+| Arquivo | Conteúdo |
+|---|---|
+| `index.html` | Hero (mármore preto + logo animado), Quem somos, Serviços, Portfólio, Avaliações, Orçamento e rodapé |
+| `contato.html` | Página Contato com o mesmo formulário, passo a passo e contatos diretos |
+| `privacidade.html` · `termos.html` · `cookies.html` · `reembolso.html` | Documentos legais com sumário, barra de leitura e "voltar ao topo" |
 
 ## Estrutura
 
 ```
-index.html              Página única (todas as seções)
-assets/css/styles.css   Design system (tokens) + layout + responsivo
-assets/js/config.js     ⚙️ Configurações editáveis (WhatsApp, vídeo, recursos ocultos)
-assets/js/whatsapp.js   Links e abertura do WhatsApp
-assets/js/quote.js      Lista "Meu orçamento" + gaveta lateral (salva no navegador)
-assets/js/carousel.js   Carrossel de serviços (scroll-snap, setas, arraste)
-assets/js/lightbox.js   Galeria em tela cheia de cada serviço
-assets/js/form.js       Formulário: validação, máscara de telefone, envio ao WhatsApp
-assets/js/main.js       Inicialização: cabeçalho, menu, animações, vídeo, recursos ocultos
-assets/img/             Fotos otimizadas (WebP) vindas do Drive do Chef
-assets/logo/            Logo claro/escuro + favicon
-assets/video/           Vídeo de fundo do Hero (ver LEIA-ME.txt)
+assets/css/   fonts · base (tokens, mármore, animações) · layout · components · home · pages
+assets/js/    config ⚙️ · consent · whatsapp · leadform · quote · carousel · lightbox · portfolio · reviews · effects · main
+assets/js/portfolio-data.js   lista de fotos do portfólio (categoria + texto alternativo)
+assets/img/   fotos otimizadas (WebP), hero, texturas de mármore e portfolio/
+assets/fonts/ fontes hospedadas no próprio site (licença SIL OFL)
+assets/logo/  logos claro/escuro, logo em alta (hero) e favicon
 ```
 
-## Seções
+## Destaques visuais
 
-1. **Cabeçalho**: logo à esquerda, menu simples e o botão **Meu orçamento** (abre a gaveta). Fica transparente sobre o Hero e sólido ao rolar. No celular vira menu em tela.
-2. **Hero**: vídeo em loop no fundo (ou a foto com zoom lento enquanto não houver vídeo), título e o botão **Fale com o Chef**.
-3. **Sobre**: retrato do Chef de dólmã branco, foto da equipe em ação e um texto curto sobre técnica e cuidado.
-4. **Serviços**: carrossel com 6 serviços (ilhas de frios, finger foods, doces com gelo seco, pratos quentes, coffee break, show cooking). Tocar na foto abre a galeria; o botão **Adicionar ao orçamento** abre a gaveta lateral com a lista do cliente, sem sair da página.
-5. **Avaliações**: cartões com estrelas e o selo do Google.
-6. **Rodapé**: formulário (nome, telefone, e-mail, tipo de evento, data, convidados) que monta a mensagem com os serviços escolhidos e abre o WhatsApp, além dos links de contato.
+- **Abertura (intro):** o logo é "escrito" sobre mármore escuro na primeira página da visita (pula em seguida e respeita "movimento reduzido").
+- **Hero:** mármore preto com ingredientes, logo em alta com brilho dourado, poeira dourada, parallax com o mouse.
+- **Portfólio:** carrossel automático **"Os favoritos do Chef"** (8 pratos, pausa e setas), filtros por categoria e duas faixas animadas com galeria em tela cheia.
+- **Fundo:** mármore claro com veios dourados, luzes suaves e veios que se desenham ao rolar.
 
-Fixos: **WhatsApp flutuante** sempre visível e a **gaveta "Meu orçamento"** à direita.
+## Como funciona o orçamento
 
-## Como editar
+1. O visitante escolhe serviços (cartões, galeria ou gaveta **Meu orçamento**).
+2. Na gaveta ou nos formulários, informa **nome, local do evento, número de convidados, data e observação (opcional)**.
+3. O WhatsApp abre com a mensagem pronta e **numerada**, por exemplo:
 
-Tudo que muda com frequência está em `assets/js/config.js`:
+```
+*PEDIDO DE ORÇAMENTO · CJR GASTRONOMIA*
+*Protocolo:* CJR-261029-K7QM
+*1. Cliente:* Maria
+*2. Local do evento:* Jurerê, Florianópolis
+*3. Data do evento:* 12/12/2026 (sábado), daqui a 44 dias
+*4. Convidados:* 80 pessoas
+*5. Serviços de interesse:*
+   5.1. Mesas e ilhas de frios
+   5.2. Finger foods
+*6. Observações:* ...
+Origem: Meu orçamento (gaveta lateral)
+```
+
+Cada clique gera um **protocolo único** (data + código). Cada botão leva um **UTM próprio** (`utm_content`): `hero-whatsapp`, `flutuante-inicio`, `flutuante-contato`, `flutuante-legal`, `gaveta-orcamento`, `form-inicio`, `form-contato`, `rodape` etc. A origem também aparece escrita na mensagem.
+
+## Configuração (`assets/js/config.js`)
 
 | Campo | Para quê |
 |---|---|
-| `whatsapp` | Número com DDI + DDD (só dígitos) |
-| `defaultMessage` | Mensagem padrão dos botões "Fale com o Chef" |
-| `googleReviewsUrl` | Link do Perfil da Empresa no Google (mostra "Ver todas as avaliações") |
-| `heroVideo.mp4` / `.webm` | Caminho do vídeo do Hero (ex.: `assets/video/hero.mp4`) |
-| `features.workshops` | `true` exibe a seção **Workshops corporativos** (mapa de empresas) |
-| `features.cursos` | `true` exibe a seção **Cursos do Chef** (Hotmart) |
+| `whatsapp` | Número com DDI + DDD |
+| `analytics.ga4Id` | ID do Google Analytics 4. Vazio = nenhum rastreamento. Preenchido = banner de cookies aparece e o GA só carrega após o aceite |
+| `legal` | Razão social, CNPJ, endereço, cidade/UF, e-mail. Aparecem no rodapé e nas políticas |
+| `reviews` | Avaliações **reais** de clientes (veja abaixo) |
+| `googleReviewsUrl` | Link do Perfil da Empresa no Google |
+| `services` | Serviços do orçamento (id, nome, capa) |
+| `heroVideo` | Vídeo opcional do Hero (ver `assets/video/LEIA-ME.txt`) |
+| `features` | Ativa as seções futuras **Workshops corporativos** e **Cursos do Chef (Hotmart)**, já prontas e ocultas |
 
-**Serviços**: cada `<li class="service-card">` em `index.html` define nome (`data-service-name`), capa, texto e as fotos da galeria (dentro de `<template data-gallery>`). A gaveta e o formulário leem esses dados automaticamente.
+### Avaliações
+
+A seção (última da página inicial) mostra **14 avaliações reais do Perfil no Google** (nota 5,0, 40 avaliações em 29/10/2026), transcritas sem alteração. Trechos que o Google corta com "Mais" foram omitidos, e os nomes aparecem como "primeiro nome + inicial". Para incluir novas avaliações, ou atualizar `reviewsSummary`:
+
+```js
+reviews: Object.freeze([
+  { nome: 'Maria S.', texto: '...', nota: 5, evento: 'Casamento', data: 'out/2026', fonte: 'Google' },
+]),
+```
+
+Com uma ou mais avaliações, a seção vira um carrossel com setas e arraste.
 
 ## Pendências antes de publicar
 
-- [ ] **Avaliações reais**: os 3 depoimentos são **exemplos de layout** (selo "Exemplo"). Substitua pelos textos reais do Google em `index.html` e remova o selo.
-- [ ] **Vídeo do Hero**: os vídeos do Drive têm mais de 10 MB. Exporte um MP4 curto (até ~6 MB), coloque em `assets/video/` e informe em `config.js`.
-- [ ] **Link do Google**: preencha `googleReviewsUrl`.
-- [ ] **Domínio**: troque `og:image` por URL absoluta quando houver domínio.
-- [ ] **Textos**: revise com o Chef o texto do "Sobre" e a área de atendimento ("Florianópolis e região").
+- [ ] **Dados legais** em `config.js > legal` (CNPJ, razão social, endereço, e-mail). Enquanto vazios, aparecem em vermelho nas políticas.
+- [ ] **Decisões do negócio** marcadas em vermelho em `termos.html` e `reembolso.html` (prazos, percentuais, validade da proposta, sinal, formas de pagamento, foro). Edite em `scripts/build_legal.py` e rode `python scripts/build_legal.py` (ou edite direto no HTML).
+- [ ] **Revisão jurídica** das quatro políticas por advogado(a). Os textos seguem a LGPD, o CDC e o Marco Civil, mas são modelos.
+- [ ] **GA4**: se for usar, preencha `ga4Id` e defina a retenção de dados no Google Analytics.
+- [ ] **Avaliações**: atualize `reviewsSummary` e `reviews` quando chegarem novas avaliações no Google.
+- [ ] **Direitos de imagem**: confirme a autorização das pessoas que aparecem nas fotos (Chef e equipe) e do fotógrafo das fotos profissionais.
+- [ ] **Hero**: confirme os direitos de uso da imagem do mármore com ingredientes (criada fora deste projeto).
 
-## Recursos futuros (já preparados e ocultos)
+## Conformidade e auditoria (29/10/2026)
 
-- **Workshops corporativos** (`#workshops`): container `[data-company-map]` para Google My Maps ou Leaflet e lista `[data-company-list]` das empresas.
-- **Cursos do Chef** (`#cursos`): cartões com `data-hotmart-url` (link de checkout da Hotmart). Para o checkout sobreposto, inclua o widget oficial da Hotmart antes de `</body>`.
+**LGPD.**
+- O formulário coleta só o necessário e não grava dados: a mensagem sai pelo WhatsApp por ação do próprio visitante.
+- Há aviso de privacidade nos formulários.
+- O banner de consentimento tem "Recusar" com o mesmo destaque de "Aceitar" e preferências reabríveis no rodapé.
+- O GA4 só carrega com consentimento, em Consent Mode.
+- Recusar apaga os cookies `_ga`.
+- Fontes e imagens são servidas pelo próprio site, sem requisições a terceiros antes do consentimento.
+- Os analytics recebem apenas eventos sem dados pessoais (`whatsapp_click`, `generate_lead` com o ID do CTA).
+
+**Acessibilidade.**
+- axe-core (WCAG 2.1 A/AA + boas práticas): 0 violações em início, Contato e Cookies.
+- Navegação completa por teclado, link "pular para o conteúdo" e foco visível.
+- Gaveta modal com fundo inerte; galeria acessível pelo teclado e com anúncio para leitores de tela.
+- Carrosséis com botão de pausa.
+- Movimento reduzido respeitado (`prefers-reduced-motion`).
+- Textos alternativos em todas as fotos.
+- Contraste revisado (dourado escurecido para 3,97:1 nos elementos gráficos).
+
+**Imagens.**
+- Fotos reais do Drive do Chef.
+- Foram excluídas do portfólio as fotos com **marcas de terceiros** visíveis (CDL, AEMFLO, telões) e com **rostos de convidados ou funcionários** sem autorização confirmada.
+- Fontes sob licença SIL OFL.
+- O ícone do WhatsApp é usado apenas como link para o serviço.
+
+## Publicação (GitHub Pages)
+
+Repositório: https://github.com/carlosserra-a11y/CJR-Gastronomia3.0. Em **Settings > Pages**, use *Deploy from a branch*, com `main` e `/ (root)`. O site fica em https://carlosserra-a11y.github.io/CJR-Gastronomia3.0/
 
 ## Rodar localmente
 
@@ -68,10 +124,3 @@ python -m http.server 5173
 ```
 
 Depois abra http://localhost:5173.
-
-## Design system
-
-- **Cores**: papel `#f8f6f2`, tinta `#1d1b18`, areia `#efeae2`, dourado `#b08d57` / `#e8c882`
-- **Tipografia**: Cormorant Garamond (títulos), Manrope (texto, base 18 px), Great Vibes (assinatura cursiva, com moderação)
-- **Movimento**: fade + slide-up suave ao rolar, zoom lento no Hero; tudo desligado com `prefers-reduced-motion`
-- **Acessibilidade**: alvos de toque ≥ 48 px, foco visível, gaveta e galeria com teclado (Esc, Tab, setas), rótulos reais no formulário

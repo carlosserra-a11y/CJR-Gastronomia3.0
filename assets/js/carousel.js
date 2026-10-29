@@ -3,14 +3,8 @@
   'use strict';
 
   const DRAG_THRESHOLD_PX = 6;
-
-  function pad(value) {
-    return String(value).padStart(2, '0');
-  }
-
-  function prefersReducedMotion() {
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  }
+  const pad = (value) => String(value).padStart(2, '0');
+  const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function enableMouseDrag(track) {
     let startX = 0;
@@ -18,6 +12,7 @@
     let moved = false;
     let pointerId = null;
 
+    track.querySelectorAll('img').forEach((img) => { img.draggable = false; });
     track.addEventListener('pointerdown', (event) => {
       if (event.pointerType !== 'mouse' || event.button !== 0) return;
       pointerId = event.pointerId;
@@ -25,7 +20,6 @@
       startScroll = track.scrollLeft;
       moved = false;
     });
-
     track.addEventListener('pointermove', (event) => {
       if (event.pointerId !== pointerId) return;
       const delta = event.clientX - startX;
@@ -37,15 +31,12 @@
       }
       track.scrollLeft = startScroll - delta;
     });
-
     const endDrag = () => {
-      if (pointerId === null) return;
       pointerId = null;
       track.classList.remove('is-dragging');
     };
     track.addEventListener('pointerup', endDrag);
     track.addEventListener('pointercancel', endDrag);
-
     // Evita que o fim de um arraste dispare o clique (abrir galeria / adicionar).
     track.addEventListener('click', (event) => {
       if (!moved) return;
@@ -55,22 +46,25 @@
     }, true);
   }
 
+  function setDisabled(button, disabled) {
+    button.setAttribute('aria-disabled', String(disabled));
+  }
+
   function initCarousel(root) {
+    if (root.dataset.carouselReady) return;
     const track = root.querySelector('[data-carousel-track]');
     const slides = Array.from(track.children);
+    if (!slides.length) return;
+    root.dataset.carouselReady = 'true';
     const prevBtn = root.querySelector('[data-carousel-prev]');
     const nextBtn = root.querySelector('[data-carousel-next]');
     const bar = root.querySelector('[data-carousel-bar]');
     const current = root.querySelector('[data-carousel-current]');
     const total = root.querySelector('[data-carousel-total]');
     let frame = 0;
+    if (total) total.textContent = pad(slides.length);
 
-    total.textContent = pad(slides.length);
-
-    function step() {
-      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-      return slides[0].getBoundingClientRect().width + gap;
-    }
+    const step = () => slides[0].getBoundingClientRect().width + (parseFloat(getComputedStyle(track).columnGap) || 0);
 
     function update() {
       frame = 0;
@@ -78,26 +72,23 @@
       const atStart = track.scrollLeft <= 2;
       const atEnd = track.scrollLeft >= max - 2;
       const visible = Math.max(1, Math.round(track.clientWidth / step()));
-      const ratio = max > 0 ? track.scrollLeft / max : 1;
       const minRatio = Math.min(1, visible / slides.length);
-      bar.style.transform = `scaleX(${minRatio + (1 - minRatio) * ratio})`;
-      current.textContent = pad(atEnd ? slides.length : Math.round(track.scrollLeft / step()) + 1);
-      prevBtn.disabled = atStart;
-      nextBtn.disabled = atEnd;
+      const ratio = max > 0 ? track.scrollLeft / max : 1;
+      if (bar) bar.style.transform = `scaleX(${minRatio + (1 - minRatio) * ratio})`;
+      if (current) current.textContent = pad(atEnd ? slides.length : Math.round(track.scrollLeft / step()) + 1);
+      setDisabled(prevBtn, atStart);
+      setDisabled(nextBtn, atEnd);
     }
 
-    function requestUpdate() {
-      if (!frame) frame = requestAnimationFrame(update);
-    }
-
-    function go(direction) {
+    function go(direction, button) {
+      if (button.getAttribute('aria-disabled') === 'true') return;
       track.scrollBy({ left: direction * step(), behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
     }
 
-    prevBtn.addEventListener('click', () => go(-1));
-    nextBtn.addEventListener('click', () => go(1));
-    track.addEventListener('scroll', requestUpdate, { passive: true });
-    window.addEventListener('resize', requestUpdate);
+    prevBtn.addEventListener('click', () => go(-1, prevBtn));
+    nextBtn.addEventListener('click', () => go(1, nextBtn));
+    track.addEventListener('scroll', () => { if (!frame) frame = requestAnimationFrame(update); }, { passive: true });
+    window.addEventListener('resize', () => { if (!frame) frame = requestAnimationFrame(update); });
     enableMouseDrag(track);
     update();
   }
@@ -106,5 +97,5 @@
     document.querySelectorAll('[data-carousel]').forEach(initCarousel);
   }
 
-  site.carousel = Object.freeze({ init });
+  site.carousel = Object.freeze({ init, initCarousel });
 })(window.ChefSite);
