@@ -27,7 +27,7 @@ assets/logo/  logos claro/escuro, logo em alta (hero) e favicon
 
 - **Abertura (intro):** o logo é "escrito" sobre mármore escuro na primeira página da visita (pula em seguida e respeita "movimento reduzido").
 - **Hero:** mármore preto com ingredientes, logo em alta com brilho dourado, poeira dourada, parallax com o mouse.
-- **Portfólio:** carrossel automático **"Os favoritos do Chef"** (8 pratos, pausa e setas), filtros por categoria e duas faixas animadas com galeria em tela cheia.
+- **Portfólio:** vídeo dos bastidores em loop (`assets/video/chef-carlos.mp4`, com botão de pausar), filtros por categoria e duas faixas animadas com galeria em tela cheia.
 - **Fundo:** mármore claro com veios dourados, luzes suaves e veios que se desenham ao rolar.
 
 ## Como funciona o orçamento
@@ -112,6 +112,16 @@ Com uma ou mais avaliações, a seção vira um carrossel com setas e arraste.
 - Foram excluídas do portfólio as fotos com **marcas de terceiros** visíveis (CDL, AEMFLO, telões) e com **rostos de convidados ou funcionários** sem autorização confirmada.
 - Fontes sob licença SIL OFL.
 - O ícone do WhatsApp é usado apenas como link para o serviço.
+
+## Backup do site anterior
+
+O site que estava em chefcarlosjrgastronomia.com.br (servidor HostGator) foi copiado em 29/10/2026 para a branch [`backup-site-antigo`](https://github.com/carlosserra-a11y/CJR-Gastronomia3.0/tree/backup-site-antigo). Arquivos que só existem no servidor (PHP, `.htaccess`, e-mails) não aparecem pela web: faça também um backup completo pelo cPanel da HostGator antes de desligar o site antigo.
+
+## Domínio chefcarlosjrgastronomia.com.br
+
+1. No painel de DNS do domínio, aponte os registros **A** de `@` para `185.199.108.153`, `185.199.109.153`, `185.199.110.153` e `185.199.111.153`, e o **CNAME** de `www` para `carlosserra-a11y.github.io`.
+2. Crie o arquivo `CNAME` na raiz do repositório com `chefcarlosjrgastronomia.com.br`, ou informe o domínio em **Settings > Pages > Custom domain**.
+3. Depois da propagação, marque **Enforce HTTPS**.
 
 ## Publicação (GitHub Pages)
 

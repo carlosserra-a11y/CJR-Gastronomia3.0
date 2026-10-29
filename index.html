@@ -22,8 +22,7 @@
     // Segurança: se os scripts falharem, o conteúdo aparece mesmo assim.
     setTimeout(function () { if (!(window.ChefSite && window.ChefSite.ready)) document.documentElement.classList.add('reveal-off'); }, 3000);
   </script>
-  <link rel="preload" as="image" href="assets/img/hero-marmore.webp" media="(min-aspect-ratio: 3/4)">
-  <link rel="preload" as="image" href="assets/img/hero-marmore-mobile.webp" media="(max-aspect-ratio: 3/4)">
+  <link rel="preload" as="image" href="assets/img/hero-marmore.webp">
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-normal-400_700.woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/fonts.css">
   <link rel="stylesheet" href="assets/css/base.css">
@@ -72,6 +71,7 @@
     <symbol id="i-photos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></symbol>
     <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></symbol>
     <symbol id="i-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="5" width="3.5" height="14" rx="1"/><rect x="14" y="5" width="3.5" height="14" rx="1"/></symbol>
   </svg>
 
@@ -115,10 +115,8 @@
     <!-- ===================== HERO ===================== -->
     <section class="hero" id="inicio" aria-labelledby="hero-title" data-hero>
       <div class="hero__media" aria-hidden="true">
-        <picture>
-          <source media="(max-aspect-ratio: 3/4)" srcset="assets/img/hero-marmore-mobile.webp">
-          <img class="hero__bg" src="assets/img/hero-marmore.webp" alt="" width="2048" height="1756" fetchpriority="high">
-        </picture>
+        <img class="hero__fundo" src="assets/img/hero-fundo.webp" alt="" width="480" height="480">
+        <img class="hero__bg" src="assets/img/hero-marmore.webp" alt="" width="2048" height="2048" fetchpriority="high">
         <video class="hero__video" muted loop playsinline preload="none" data-hero-video></video>
       </div>
       <div class="hero__vignette" aria-hidden="true"></div>
@@ -144,58 +142,6 @@
         </div>
       </div>
       <a class="hero__scroll" href="#quem-somos">Descubra<span aria-hidden="true"></span></a>
-    </section>
-
-    <!-- ===================== QUEM SOMOS ===================== -->
-    <section class="section about" id="quem-somos" aria-labelledby="about-title">
-      <svg class="vein" viewBox="0 0 760 420" aria-hidden="true" focusable="false"><path pathLength="1" d="M8 400 C 150 330 210 360 318 262 S 520 118 752 36"/><path pathLength="1" d="M70 416 C 210 372 300 388 420 304 S 610 196 744 168" opacity=".55"/></svg>
-      <div class="container about__grid">
-        <div class="about__media">
-          <figure class="about__portrait reveal">
-            <img src="assets/img/chef.webp" alt="Chef Carlos Junior de dólmã branco, sorrindo, durante um evento ao ar livre" width="960" height="1200" loading="lazy">
-          </figure>
-          <figure class="about__team reveal" style="--delay: .2s">
-            <img src="assets/img/equipe.webp" alt="Chef Carlos Junior e sua equipe finalizando as travessas na cozinha" width="1200" height="800" loading="lazy">
-            <figcaption>Equipe em ação</figcaption>
-          </figure>
-          <p class="about__badge reveal" style="--delay: .35s"><span><strong data-count="12">12</strong>anos de experiência</span></p>
-        </div>
-
-        <div class="about__text">
-          <p class="eyebrow reveal">Quem somos</p>
-          <h2 class="section-title reveal" id="about-title">Chef Carlos Junior</h2>
-          <p class="about__lead reveal">À frente da CJR Gastronomia, o Chef Carlos Junior reúne 8 anos de formação em Gastronomia e uma trajetória de 12 anos de experiência profissional no setor.</p>
-          <p class="reveal">Graduado em Gastronomia pela PUCRS e com pós-graduação em Gastronomia Contemporânea, construiu sua carreira em diferentes cozinhas, restaurantes e experiências gastronômicas, desenvolvendo um olhar apurado para técnicas, sabores, apresentação e excelência no serviço.</p>
-          <p class="reveal">Seu trabalho é guiado pela combinação entre técnica, criatividade e hospitalidade, com o propósito de transformar cada evento em uma experiência gastronômica memorável — da escolha dos ingredientes à apresentação dos pratos, do planejamento à experiência dos convidados.</p>
-          <ul class="stats reveal" role="list">
-            <li><strong data-count="12">12</strong><span>anos de experiência profissional</span></li>
-            <li><strong data-count="8">8</strong><span>anos de formação em Gastronomia</span></li>
-            <li><strong>PUCRS</strong><span>Graduação em Gastronomia</span></li>
-            <li><strong>Pós</strong><span>em Gastronomia Contemporânea</span></li>
-          </ul>
-          <p class="signature reveal" aria-hidden="true">Carlos Jr</p>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="company on-dark reveal">
-          <div>
-            <p class="eyebrow">A empresa</p>
-            <h3>Sobre a CJR Gastronomia</h3>
-            <p>A CJR Gastronomia é especializada em experiências gastronômicas para eventos sociais e corporativos, com soluções personalizadas em coffee breaks, finger foods, buffets, mesas de frios e serviços especiais.</p>
-            <p>Mais do que servir refeições, nosso propósito é criar experiências que aproximem pessoas, valorizem os momentos e encantem os convidados. Cada serviço é planejado de acordo com as necessidades do evento, contemplando cardápio, estrutura, equipe e apresentação.</p>
-            <ul class="company__specialties" role="list" aria-label="Especialidades">
-              <li>Coffee breaks</li><li>Finger foods</li><li>Buffets</li><li>Mesas de frios</li><li>Serviços especiais</li>
-            </ul>
-          </div>
-          <ul class="company__pillars" role="list" aria-label="O que planejamos em cada evento">
-            <li><strong>Cardápio</strong><span>Pensado para a ocasião e os convidados.</span></li>
-            <li><strong>Estrutura</strong><span>Montagem adequada ao espaço do evento.</span></li>
-            <li><strong>Equipe</strong><span>Profissionais dimensionados para o serviço.</span></li>
-            <li><strong>Apresentação</strong><span>Cuidado visual em cada mesa e prato.</span></li>
-          </ul>
-        </div>
-      </div>
     </section>
 
     <!-- ===================== SERVIÇOS ===================== -->
@@ -358,6 +304,58 @@
       </div>
     </section>
 
+    <!-- ===================== QUEM SOMOS ===================== -->
+    <section class="section about" id="quem-somos" aria-labelledby="about-title">
+      <svg class="vein" viewBox="0 0 760 420" aria-hidden="true" focusable="false"><path pathLength="1" d="M8 400 C 150 330 210 360 318 262 S 520 118 752 36"/><path pathLength="1" d="M70 416 C 210 372 300 388 420 304 S 610 196 744 168" opacity=".55"/></svg>
+      <div class="container about__grid">
+        <div class="about__media">
+          <figure class="about__portrait reveal">
+            <img src="assets/img/chef.webp" alt="Chef Carlos Junior de dólmã branco, de braços cruzados, em fundo escuro" width="960" height="1200" loading="lazy">
+          </figure>
+          <figure class="about__team reveal" style="--delay: .2s">
+            <img src="assets/img/equipe.webp" alt="Chef Carlos Junior e sua equipe finalizando as travessas na cozinha" width="1200" height="800" loading="lazy">
+            <figcaption>Equipe em ação</figcaption>
+          </figure>
+          <p class="about__badge reveal" style="--delay: .35s"><span><strong data-count="12">12</strong>anos de experiência</span></p>
+        </div>
+
+        <div class="about__text">
+          <p class="eyebrow reveal">Quem somos</p>
+          <h2 class="section-title reveal" id="about-title">Chef Carlos Junior</h2>
+          <p class="about__lead reveal">À frente da CJR Gastronomia, o Chef Carlos Junior reúne 8 anos de formação em Gastronomia e uma trajetória de 12 anos de experiência profissional no setor.</p>
+          <p class="reveal">Graduado em Gastronomia pela PUCRS e com pós-graduação em Gastronomia Contemporânea, construiu sua carreira em diferentes cozinhas, restaurantes e experiências gastronômicas, desenvolvendo um olhar apurado para técnicas, sabores, apresentação e excelência no serviço.</p>
+          <p class="reveal">Seu trabalho é guiado pela combinação entre técnica, criatividade e hospitalidade, com o propósito de transformar cada evento em uma experiência gastronômica memorável — da escolha dos ingredientes à apresentação dos pratos, do planejamento à experiência dos convidados.</p>
+          <ul class="stats reveal" role="list">
+            <li><strong data-count="12">12</strong><span>anos de experiência profissional</span></li>
+            <li><strong data-count="8">8</strong><span>anos de formação em Gastronomia</span></li>
+            <li><strong>PUCRS</strong><span>Graduação em Gastronomia</span></li>
+            <li><strong>Pós</strong><span>em Gastronomia Contemporânea</span></li>
+          </ul>
+          <p class="signature reveal" aria-hidden="true">Carlos Jr</p>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="company on-dark reveal">
+          <div>
+            <p class="eyebrow">A empresa</p>
+            <h3>Sobre a CJR Gastronomia</h3>
+            <p>A CJR Gastronomia é especializada em experiências gastronômicas para eventos sociais e corporativos, com soluções personalizadas em coffee breaks, finger foods, buffets, mesas de frios e serviços especiais.</p>
+            <p>Mais do que servir refeições, nosso propósito é criar experiências que aproximem pessoas, valorizem os momentos e encantem os convidados. Cada serviço é planejado de acordo com as necessidades do evento, contemplando cardápio, estrutura, equipe e apresentação.</p>
+            <ul class="company__specialties" role="list" aria-label="Especialidades">
+              <li>Coffee breaks</li><li>Finger foods</li><li>Buffets</li><li>Mesas de frios</li><li>Serviços especiais</li>
+            </ul>
+          </div>
+          <ul class="company__pillars" role="list" aria-label="O que planejamos em cada evento">
+            <li><strong>Cardápio</strong><span>Pensado para a ocasião e os convidados.</span></li>
+            <li><strong>Estrutura</strong><span>Montagem adequada ao espaço do evento.</span></li>
+            <li><strong>Equipe</strong><span>Profissionais dimensionados para o serviço.</span></li>
+            <li><strong>Apresentação</strong><span>Cuidado visual em cada mesa e prato.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- ===================== PORTFÓLIO ===================== -->
     <section class="section portfolio" id="portfolio" aria-labelledby="portfolio-title" data-portfolio>
       <svg class="vein" viewBox="0 0 760 420" aria-hidden="true" focusable="false"><path pathLength="1" d="M4 60 C 140 120 240 70 340 160 S 560 330 756 300"/><path pathLength="1" d="M30 20 C 170 90 280 40 390 120 S 600 270 740 250" opacity=".5"/></svg>
@@ -368,20 +366,20 @@
         </div>
         <p class="reveal">Fotos reais de eventos preparados pela CJR Gastronomia. Filtre por categoria e toque em uma foto para ampliar.</p>
       </div>
-      <div class="container spotlight reveal" data-spotlight aria-roledescription="carrossel" aria-label="Os favoritos do Chef">
-        <div class="spotlight__stage"><ul class="spotlight__slides" role="list" data-spotlight-slides></ul></div>
+      <div class="container spotlight spotlight--video reveal" data-feature-video>
+        <div class="spotlight__stage">
+          <video class="spotlight__video" src="assets/video/chef-carlos.mp4" poster="assets/img/video-poster.webp" muted loop playsinline autoplay preload="metadata" aria-label="Vídeo: montagem de uma mesa de frios com queijos, frutas e embutidos"></video>
+        </div>
         <div class="spotlight__info">
-          <p class="eyebrow">Os favoritos do Chef</p>
-          <p class="spotlight__count" aria-hidden="true"><span data-spotlight-current>01</span><span class="spotlight__sep">/</span><span data-spotlight-total>08</span></p>
-          <h3 class="spotlight__title" data-spotlight-title aria-live="polite"></h3>
-          <p class="spotlight__cat" data-spotlight-cat></p>
-          <div class="spotlight__progress" aria-hidden="true"><span data-spotlight-bar></span></div>
+          <p class="eyebrow">Bastidores</p>
+          <h3 class="spotlight__title">Uma mesa de frios montada à mão</h3>
+          <p class="spotlight__text">Cada queijo, fruta e embutido é posicionado com cuidado para encantar os convidados desde o primeiro olhar.</p>
           <div class="spotlight__controls">
-            <button class="icon-btn" type="button" data-spotlight-prev aria-label="Prato anterior"><svg aria-hidden="true"><use href="#i-arrow-left"/></svg></button>
-            <button class="icon-btn" type="button" data-spotlight-pause aria-pressed="false" aria-label="Pausar destaques"><svg aria-hidden="true"><use href="#i-pause"/></svg></button>
-            <button class="icon-btn" type="button" data-spotlight-next aria-label="Próximo prato"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+            <button class="icon-btn" type="button" data-video-toggle aria-pressed="false" aria-label="Pausar vídeo"><svg aria-hidden="true"><use href="#i-pause"/></svg></button>
           </div>
-          <button class="btn btn--gold" type="button" data-quote-add><svg aria-hidden="true"><use href="#i-plus"/></svg><span data-spotlight-add>Adicionar ao orçamento</span></button>
+          <div data-service="frios">
+            <button class="btn btn--gold" type="button" data-quote-add><svg aria-hidden="true"><use href="#i-plus"/></svg>Quero uma mesa de frios</button>
+          </div>
         </div>
       </div>
       <div class="container portfolio__toolbar reveal">

@@ -105,91 +105,38 @@
     els.pauseLabel.textContent = paused ? 'Retomar animação' : 'Pausar animação';
   }
 
-  /* ---------- "Os favoritos do Chef": carrossel automático dos melhores pratos ---------- */
-  const SPOT_MS = 5200;
-  const HIGHLIGHTS = [
-    { file: 'quentes-17', title: 'Camarões ao molho cremoso', cat: 'quentes' },
-    { file: 'doces-12', title: 'Torre de doces com gelo seco', cat: 'doces' },
-    { file: 'frios-01', title: 'Ilha de frios com queijos e embutidos', cat: 'frios' },
-    { file: 'finger-08', title: 'Minicheesecake de frutas vermelhas', cat: 'finger' },
-    { file: 'quentes-18', title: 'Risoto cremoso', cat: 'quentes' },
-    { file: 'doces-15', title: 'Red velvet com morangos', cat: 'doces' },
-    { file: 'frios-04', title: 'Terrines de queijo com castanhas', cat: 'frios' },
-    { file: 'finger-11', title: 'Gratinados individuais', cat: 'finger' },
-  ];
-  const spot = { index: 0, timer: 0, paused: false, hovering: false, visible: false };
-
-  function buildSpotSlides(root) {
-    const photos = HIGHLIGHTS.map((h) => ({ src: `assets/img/portfolio/${h.file}.webp`, alt: h.title }));
-    const slides = HIGHLIGHTS.map((h, i) => {
-      const li = document.createElement('li');
-      li.className = 'spotlight__slide';
-      li.innerHTML = '<button type="button"><img alt="" decoding="async"></button>';
-      const img = li.querySelector('img');
-      img.src = photos[i].src;
-      img.alt = h.title;
-      if (i > 0) img.loading = 'lazy';
-      const btn = li.querySelector('button');
-      btn.setAttribute('aria-label', `Ampliar foto: ${h.title}`);
-      btn.addEventListener('click', () => site.lightbox.open({ title: 'Os favoritos do Chef', photos, index: i, serviceId: h.cat, trigger: btn }));
-      return li;
-    });
-    root.querySelector('[data-spotlight-slides]').replaceChildren(...slides);
-    root.querySelector('[data-spotlight-total]').textContent = String(HIGHLIGHTS.length).padStart(2, '0');
-  }
-
-  function showSpot(root, position) {
-    spot.index = (position + HIGHLIGHTS.length) % HIGHLIGHTS.length;
-    const item = HIGHLIGHTS[spot.index];
-    root.querySelectorAll('.spotlight__slide').forEach((li, i) => {
-      li.classList.toggle('is-active', i === spot.index);
-      li.querySelector('button').tabIndex = i === spot.index ? 0 : -1;
-      li.setAttribute('aria-hidden', String(i !== spot.index));
-    });
-    root.dataset.service = item.cat;
-    root.querySelector('[data-spotlight-current]').textContent = String(spot.index + 1).padStart(2, '0');
-    root.querySelector('[data-spotlight-title]').textContent = item.title;
-    root.querySelector('[data-spotlight-cat]').textContent = labelOf(item.cat);
-    root.classList.remove('is-running');
-    void root.offsetWidth; // reinicia a barra de progresso
-    if (shouldRun()) root.classList.add('is-running');
-  }
-
-  const shouldRun = () => spot.visible && !spot.paused && !spot.hovering && !reducedMotion();
-
-  function scheduleSpot(root) {
-    window.clearInterval(spot.timer);
-    root.classList.toggle('is-running', shouldRun());
-    if (shouldRun()) spot.timer = window.setInterval(() => showSpot(root, spot.index + 1), SPOT_MS);
-  }
-
-  function initSpotlight() {
-    const root = document.querySelector('[data-spotlight]');
+  /* ---------- Vídeo dos bastidores: loop sem som, pausa fora da tela e respeita "movimento reduzido" ---------- */
+  function initFeatureVideo() {
+    const root = document.querySelector('[data-feature-video]');
     if (!root) return;
-    root.style.setProperty('--spot-ms', `${SPOT_MS}ms`);
-    buildSpotSlides(root);
-    const go = (step) => { showSpot(root, spot.index + step); scheduleSpot(root); };
-    root.querySelector('[data-spotlight-prev]').addEventListener('click', () => go(-1));
-    root.querySelector('[data-spotlight-next]').addEventListener('click', () => go(1));
-    const pause = root.querySelector('[data-spotlight-pause]');
-    if (reducedMotion()) pause.hidden = true;
-    pause.addEventListener('click', () => {
-      spot.paused = !spot.paused;
-      pause.setAttribute('aria-pressed', String(spot.paused));
-      pause.setAttribute('aria-label', spot.paused ? 'Retomar destaques' : 'Pausar destaques');
-      scheduleSpot(root);
+    const video = root.querySelector('video');
+    const toggle = root.querySelector('[data-video-toggle]');
+    let userPaused = reducedMotion();
+    const play = () => { const result = video.play(); if (result) result.catch(() => { /* autoplay bloqueado: segue no pôster */ }); };
+    const sync = () => {
+      toggle.setAttribute('aria-pressed', String(userPaused));
+      toggle.setAttribute('aria-label', userPaused ? 'Reproduzir vídeo' : 'Pausar vídeo');
+      toggle.querySelector('use').setAttribute('href', userPaused ? '#i-play' : '#i-pause');
+    };
+    if (userPaused) {
+      video.removeAttribute('autoplay');
+      video.pause();
+    }
+    toggle.addEventListener('click', () => {
+      userPaused = !userPaused;
+      if (userPaused) video.pause();
+      else play();
+      sync();
     });
-    const hold = (value) => () => { spot.hovering = value; scheduleSpot(root); };
-    root.addEventListener('pointerenter', hold(true));
-    root.addEventListener('pointerleave', hold(false));
-    root.addEventListener('focusin', hold(true));
-    root.addEventListener('focusout', hold(false));
-    new IntersectionObserver(([entry]) => { spot.visible = entry.isIntersecting; scheduleSpot(root); }, { threshold: 0.3 }).observe(root);
-    showSpot(root, 0);
+    new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) video.pause();
+      else if (!userPaused) play();
+    }, { threshold: 0.25 }).observe(root);
+    sync();
   }
 
   function init() {
-    initSpotlight();
+    initFeatureVideo();
     els.section = document.querySelector('[data-portfolio]');
     if (!els.section || !data().photos.length) return;
     els.filters = els.section.querySelector('[data-portfolio-filters]');
