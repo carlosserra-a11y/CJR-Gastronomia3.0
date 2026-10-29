@@ -117,6 +117,8 @@ Com uma ou mais avaliações, a seção vira um carrossel com setas e arraste.
 
 O site que estava em chefcarlosjrgastronomia.com.br (servidor HostGator) foi copiado em 29/10/2026 para a branch [`backup-site-antigo`](https://github.com/carlosserra-a11y/CJR-Gastronomia3.0/tree/backup-site-antigo). Arquivos que só existem no servidor (PHP, `.htaccess`, e-mails) não aparecem pela web: faça também um backup completo pelo cPanel da HostGator antes de desligar o site antigo.
 
+No próprio servidor, os arquivos do site antigo (inclusive o `.htaccess`) foram movidos, sem exclusão, para `~/backup-site-antigo-2026-10-29`, fora do `public_html`. No lugar deles, o `public_html` recebeu uma cópia deste site (versão `cf9254b`), que atende quem ainda tem o endereço antigo do domínio guardado no cache de DNS. Depois que o cache expira, todos passam a abrir o GitHub Pages. Para voltar ao site antigo, mova de volta o conteúdo da pasta de backup para o `public_html` e restaure o DNS anterior.
+
 ## Domínio chefcarlosjrgastronomia.com.br
 
 1. No painel de DNS do domínio, aponte os registros **A** de `@` para `185.199.108.153`, `185.199.109.153`, `185.199.110.153` e `185.199.111.153`, e o **CNAME** de `www` para `carlosserra-a11y.github.io`.
