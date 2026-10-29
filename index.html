@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; style-src-elem 'self'; style-src-attr 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob: https:; media-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; frame-src 'none'; base-uri 'self'; form-action 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>CJR Gastronomia · Experiências gastronômicas para eventos</title>
+  <meta name="description" content="Buffet, empratado, finger food, coffee break, mesa de frios, ilhas gastronômicas e personal chef para eventos sociais e corporativos em Florianópolis e região, com o Chef Carlos Junior. Solicite um orçamento personalizado.">
+  <meta name="theme-color" content="#120b09">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CJR Gastronomia · Experiências gastronômicas para eventos">
+  <meta property="og:description" content="Alta gastronomia itinerante para eventos em Florianópolis e região. Conheça os serviços e receba uma proposta personalizada pelo WhatsApp.">
+  <meta property="og:image" content="https://chefcarlosjrgastronomia.com.br/assets/img/og-cjr.jpg">
+  <meta property="og:url" content="https://chefcarlosjrgastronomia.com.br/">
+  <link rel="canonical" href="https://chefcarlosjrgastronomia.com.br/">
+  <link rel="preload" href="assets/img/logo.webp" as="image" type="image/webp">
+  <link rel="preload" as="image" type="image/webp" href="assets/img/hero-chef.webp" imagesrcset="assets/img/hero-chef.webp 1214w, assets/img/hero-chef-2x.webp 2428w" imagesizes="100vw">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/cormorant-garamond.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/features.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <script src="js/site/boot.js"></script>
+  <script type="module" src="js/site/main.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Pular para o conteúdo</a>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <img class="pre-logo" src="assets/img/logo.webp" alt="" width="900" height="419">
+    <span class="pre-line"></span>
+  </div>
+
+  <div class="cursor" aria-hidden="true"><i class="cursor-ring"><span class="cursor-label"></span></i><i class="cursor-dot"></i></div>
+
+  <header class="site-header" id="header">
+    <a class="brand" href="#/" aria-label="Chef Carlos Jr Gastronomia — início"><img class="brand-logo" src="assets/img/logo.webp" alt="Chef Carlos Jr Gastronomia" width="900" height="419"></a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#/">Quem Somos</a>
+      <a href="#/servicos">Serviços</a>
+      <a href="#/contato">Contato</a>
+    </nav>
+    <div class="header-actions">
+      <div class="header-social" id="headerSocial"></div>
+      <button type="button" class="btn btn-gold btn-sm header-cta" data-order-open><span>Orçamento</span><b class="count" id="headerCount" hidden>0</b></button>
+      <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer"><span class="menu-lines" aria-hidden="true"></span><span class="sr-only">Abrir menu</span></button>
+    </div>
+  </header>
+
+  <div class="layer drawer" id="drawer" hidden>
+    <div class="layer-backdrop" data-close></div>
+    <nav class="drawer-panel" aria-label="Menu">
+      <button type="button" class="dialog-x" data-close aria-label="Fechar menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <div class="drawer-nav">
+        <a href="#/"><small>01</small>Quem Somos</a>
+        <a href="#/servicos"><small>02</small>Serviços</a>
+        <a href="#/contato"><small>03</small>Contato</a>
+      </div>
+      <div class="drawer-social" id="drawerSocial"></div>
+      <button type="button" class="btn btn-gold" data-order-open><span>Solicitar orçamento</span></button>
+    </nav>
+  </div>
+
+  <main id="main" tabindex="-1">
+    <div class="view" id="view"></div>
+  </main>
+
+  <footer class="site-footer" id="footer"></footer>
+
+  <div class="quick-actions" role="region" aria-label="Atalhos">
+  <button type="button" class="order-tab" id="orderTab" data-order-open hidden aria-label="Abrir o seu pedido de orçamento">
+    <span class="order-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></span>
+    <span class="order-tab-label" id="orderTabLabel">Seu pedido</span>
+    <b class="order-tab-count" id="orderTabCount" hidden>0</b>
+  </button>
+
+  <a class="wa-float" data-wa="flutuante-quem-somos" data-whats hidden target="_blank" rel="noopener" aria-label="Fale com o Chef no WhatsApp">
+    <span class="wa-float-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg></span>
+    <span class="wa-float-text">Fale com o Chef</span>
+  </a>
+  </div>
+
+  <div class="layer" id="layer" hidden>
+    <div class="layer-backdrop" data-close></div>
+    <div class="dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"></div>
+  </div>
+
+  <div class="page-curtain" id="curtain" aria-hidden="true"><img src="assets/img/logo.webp" alt="" width="900" height="419"></div>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <noscript><div class="noscript">Para ver o site e pedir um orçamento, ative o JavaScript do navegador.</div></noscript>
+</body>
+</html>
