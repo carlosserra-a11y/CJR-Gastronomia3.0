@@ -366,19 +366,34 @@
         </div>
         <p class="reveal">Fotos reais de eventos preparados pela CJR Gastronomia. Filtre por categoria e toque em uma foto para ampliar.</p>
       </div>
-      <div class="container spotlight spotlight--video reveal" data-feature-video>
-        <div class="spotlight__stage">
-          <video class="spotlight__video" src="assets/video/chef-carlos.mp4" poster="assets/img/video-poster.webp" muted loop playsinline autoplay preload="metadata" aria-label="Vídeo: montagem de uma mesa de frios com queijos, frutas e embutidos"></video>
-        </div>
-        <div class="spotlight__info">
-          <p class="eyebrow">Bastidores</p>
-          <h3 class="spotlight__title">Uma mesa de frios montada à mão</h3>
-          <p class="spotlight__text">Cada queijo, fruta e embutido é posicionado com cuidado para encantar os convidados desde o primeiro olhar.</p>
-          <div class="spotlight__controls">
-            <button class="icon-btn" type="button" data-video-toggle aria-pressed="false" aria-label="Pausar vídeo"><svg aria-hidden="true"><use href="#i-pause"/></svg></button>
+      <div class="container">
+        <div class="reel reveal" data-feature-video>
+          <div class="reel__media">
+            <div class="reel__frame">
+              <video class="reel__video" src="assets/video/chef-carlos.mp4" poster="assets/img/video-poster.webp" muted loop playsinline autoplay preload="metadata" aria-label="Vídeo dos bastidores de um evento da CJR Gastronomia: preparo no fogão, risotos e nhoques finalizados, salgados, mesa de frios, serviço às mesas e sobremesa"></video>
+              <span class="reel__badge"><span class="reel__dot" aria-hidden="true"></span>Evento real</span>
+              <span class="reel__bar" aria-hidden="true"><span></span></span>
+            </div>
+            <button class="reel__toggle" type="button" data-video-toggle aria-pressed="false" aria-label="Pausar vídeo">
+              <svg class="reel__ring" viewBox="0 0 60 60" aria-hidden="true" focusable="false"><circle cx="30" cy="30" r="29" pathLength="1"/></svg>
+              <svg class="reel__icon" aria-hidden="true"><use href="#i-pause"/></svg>
+            </button>
           </div>
-          <div data-service="frios">
-            <button class="btn btn--gold" type="button" data-quote-add><svg aria-hidden="true"><use href="#i-plus"/></svg>Quero uma mesa de frios</button>
+          <div class="reel__info">
+            <p class="reel__kicker">Bastidores</p>
+            <h3 class="reel__title">Do fogão <em>à mesa</em> do convidado</h3>
+            <p class="reel__text">Um pouco do que acontece por trás de cada evento: pratos finalizados na hora, salgados quentinhos, mesa de frios e sobremesas servidas com cuidado.</p>
+            <p class="reel__label" id="reel-picks-label">Gostou do que viu? Toque para incluir no seu orçamento:</p>
+            <ul class="reel__picks" role="list" aria-labelledby="reel-picks-label">
+              <li><button class="reel-pick" type="button" data-video-service="quentes" aria-pressed="false"><span class="reel-pick__icon"><svg aria-hidden="true"><use href="#i-plus"/></svg></span><span class="reel-pick__text"><strong>Pratos quentes</strong><small>Risotos e nhoques</small></span></button></li>
+              <li><button class="reel-pick" type="button" data-video-service="finger" aria-pressed="false"><span class="reel-pick__icon"><svg aria-hidden="true"><use href="#i-plus"/></svg></span><span class="reel-pick__text"><strong>Finger foods</strong><small>Salgados e canapés</small></span></button></li>
+              <li><button class="reel-pick" type="button" data-video-service="frios" aria-pressed="false"><span class="reel-pick__icon"><svg aria-hidden="true"><use href="#i-plus"/></svg></span><span class="reel-pick__text"><strong>Mesa de frios</strong><small>Queijos, embutidos e frutas</small></span></button></li>
+              <li><button class="reel-pick" type="button" data-video-service="doces" aria-pressed="false"><span class="reel-pick__icon"><svg aria-hidden="true"><use href="#i-plus"/></svg></span><span class="reel-pick__text"><strong>Sobremesas</strong><small>Petit gâteau e doces finos</small></span></button></li>
+            </ul>
+            <div class="reel__actions">
+              <button class="btn btn--gold" type="button" data-quote-open aria-controls="quote-drawer" aria-expanded="false"><svg aria-hidden="true"><use href="#i-list"/></svg>Ver meu orçamento <span class="reel__count" data-quote-count>0</span></button>
+              <a class="link-arrow" href="#servicos">Todos os serviços</a>
+            </div>
           </div>
         </div>
       </div>

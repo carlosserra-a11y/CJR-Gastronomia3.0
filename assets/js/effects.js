@@ -157,9 +157,18 @@
     counters.forEach((el) => observer.observe(el));
   }
 
+  /** Altura real do hero em --hero-h: Serviços desloca o mármore por ela para a pedra continuar sem emenda. */
+  function trackHeroHeight(hero) {
+    const set = () => document.documentElement.style.setProperty('--hero-h', `${hero.offsetHeight}px`);
+    set();
+    if ('ResizeObserver' in window) new ResizeObserver(set).observe(hero);
+    else window.addEventListener('resize', set);
+  }
+
   function init() {
-    if (reducedMotion()) return;
     const hero = document.querySelector('[data-hero]');
+    if (hero) trackHeroHeight(hero);
+    if (reducedMotion()) return;
     if (hero) {
       if (finePointer()) initHeroPointer(hero);
       initHeroScroll(hero);

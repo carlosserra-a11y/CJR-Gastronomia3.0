@@ -3,9 +3,9 @@
    ========================================================= */
 
 /* ---------- Contato ---------- */
-.contact-page__grid { display: grid; gap: var(--space-6); align-items: start; }
+.contact-page__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); align-items: start; }
 .contact-page .form-card { background: rgba(255, 255, 255, 0.92); border: 1px solid var(--c-line); box-shadow: var(--shadow); }
-.contact-aside { display: grid; gap: var(--space-5); }
+.contact-aside { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-5); }
 .steps { position: relative; margin: 0; padding: 0; list-style: none; counter-reset: step; }
 .steps::before { content: ""; position: absolute; top: 8px; bottom: 8px; left: 21px; width: 1px; background: linear-gradient(var(--c-gold), rgba(151, 116, 67, 0.15)); }
 .steps li { position: relative; display: grid; grid-template-columns: 44px 1fr; gap: var(--space-3); padding-bottom: var(--space-4); counter-increment: step; }

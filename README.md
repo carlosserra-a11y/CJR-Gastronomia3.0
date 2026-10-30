@@ -27,7 +27,8 @@ assets/logo/  logos claro/escuro, logo em alta (hero) e favicon
 
 - **Abertura (intro):** o logo é "escrito" sobre mármore escuro na primeira página da visita (pula em seguida e respeita "movimento reduzido").
 - **Hero:** mármore preto com ingredientes, logo em alta com brilho dourado, poeira dourada, parallax com o mouse.
-- **Portfólio:** vídeo dos bastidores em loop (`assets/video/chef-carlos.mp4`, com botão de pausar), filtros por categoria e duas faixas animadas com galeria em tela cheia.
+- **Serviços:** continua o mármore do hero sem emenda. `assets/img/marmore-hero.webp` é um bloco repetível feito só com pedaços do mármore do próprio hero, na mesma escala e cor; a base do hero se dissolve nele e Serviços segue o mesmo padrão.
+- **Portfólio:** vídeo dos bastidores em loop (`assets/video/chef-carlos.mp4`) em moldura com selo "Evento real", barra e anel de progresso, botão de pausar e atalhos que incluem no orçamento os serviços que aparecem no vídeo; depois, filtros por categoria e duas faixas animadas com galeria em tela cheia.
 - **Fundo:** mármore claro com veios dourados, luzes suaves e veios que se desenham ao rolar.
 
 ## Como funciona o orçamento
