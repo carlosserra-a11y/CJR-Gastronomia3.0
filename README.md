@@ -50,9 +50,10 @@ Vêm da pasta **Site** do Google Drive do Chef, com uma subpasta por bloco de se
 *3. Data do evento:* 12/12/2026 (sábado), daqui a 44 dias
 *4. Convidados:* 80 pessoas
 *5. Serviços de interesse:*
-   5.1. Mesas e ilhas de frios
+   5.1. Mesa de frios
    5.2. Finger foods
 *6. Observações:* ...
+*7. Autoriza uso dos dados para marketing:* sim
 Origem: Meu orçamento (gaveta lateral)
 ```
 
@@ -89,7 +90,7 @@ Com uma ou mais avaliações, a seção vira um carrossel com setas e arraste.
 
 ## Pendências antes de publicar
 
-- [ ] **Dados legais** em `config.js > legal` (CNPJ, razão social, endereço, e-mail). Enquanto vazios, aparecem em vermelho nas políticas.
+- [ ] **Dados legais** em `config.js > legal` (razão social, endereço, cidade/UF, e-mail; o CNPJ 69.543.105/0001-93 já está preenchido e aparece no rodapé). Enquanto vazios, aparecem em vermelho nas políticas.
 - [ ] **Decisões do negócio** marcadas em vermelho em `termos.html` e `reembolso.html` (prazos, percentuais, validade da proposta, sinal, formas de pagamento, foro). Edite em `scripts/build_legal.py` e rode `python scripts/build_legal.py` (ou edite direto no HTML).
 - [ ] **Revisão jurídica** das quatro políticas por advogado(a). Os textos seguem a LGPD, o CDC e o Marco Civil, mas são modelos.
 - [ ] **GA4**: se for usar, preencha `ga4Id` e defina a retenção de dados no Google Analytics.
@@ -102,6 +103,7 @@ Com uma ou mais avaliações, a seção vira um carrossel com setas e arraste.
 **LGPD.**
 - O formulário coleta só o necessário e não grava dados: a mensagem sai pelo WhatsApp por ação do próprio visitante.
 - Há aviso de privacidade nos formulários.
+- Uso para marketing só com a caixa opcional "Autorizo o uso dos meus dados para receber novidades, promoções e conteúdos de marketing", que vem desmarcada, não bloqueia o pedido e vai na mensagem como item 7 (sim/não). A Política de Privacidade explica a finalidade e como cancelar.
 - O banner de consentimento tem "Recusar" com o mesmo destaque de "Aceitar" e preferências reabríveis no rodapé.
 - O GA4 só carrega com consentimento, em Consent Mode.
 - Recusar apaga os cookies `_ga`.

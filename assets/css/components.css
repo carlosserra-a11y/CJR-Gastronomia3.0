@@ -23,6 +23,9 @@
 .lead-form__services-label { margin-bottom: 0.5rem; font-size: 0.9375rem; font-weight: 600; color: var(--c-ink); }
 .lead-form__services-empty { margin-bottom: 0.4rem; font-size: 0.9375rem; color: var(--c-muted); }
 .lead-form__services .chips { margin-bottom: 0.6rem; }
+.lead-form__consent { display: flex; align-items: flex-start; gap: 0.75rem; margin: 0 0 var(--space-3); }
+.lead-form__consent input { flex: none; width: 20px; height: 20px; margin: 0.15rem 0 0; accent-color: var(--c-gold-deep); cursor: pointer; }
+.lead-form__consent label { font-size: 0.875rem; line-height: 1.5; color: var(--c-ink); cursor: pointer; }
 .lead-form__privacy { margin: var(--space-3) 0 0; font-size: 0.8125rem; line-height: 1.55; color: var(--c-muted); }
 .lead-form__privacy a { color: var(--c-gold-deep); font-weight: 600; }
 .lead-form__status { margin: var(--space-3) 0 0; font-size: 0.9375rem; color: var(--c-ink); }

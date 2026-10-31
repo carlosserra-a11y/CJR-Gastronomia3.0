@@ -25,7 +25,7 @@ window.ChefSite.config = Object.freeze({
   legal: Object.freeze({
     nomeFantasia: 'CJR Gastronomia',
     razaoSocial: '',
-    cnpj: '',
+    cnpj: '69.543.105/0001-93',
     endereco: '',
     cidadeUf: '',
     email: '',

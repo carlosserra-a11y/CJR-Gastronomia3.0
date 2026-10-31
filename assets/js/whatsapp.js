@@ -87,6 +87,7 @@
       `*4. Convidados:* ${guests} ${guests === 1 ? 'pessoa' : 'pessoas'}`,
       ...services,
       `*6. Observações:* ${details.observacao || 'nenhuma'}`,
+      `*7. Autoriza uso dos dados para marketing:* ${details.marketing ? 'sim' : 'não'}`,
       '',
       `Origem: ${originLabel(cta)}`,
       `Enviado pelo site em ${sentAt()}`,

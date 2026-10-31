@@ -29,9 +29,11 @@ PAGES = {
         "title": "Política de Privacidade",
         "lead": "Como a CJR Gastronomia trata os seus dados pessoais, de acordo com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).",
         "minutes": 7,
+        "updated": "31 de outubro de 2026",
         "summary": [
             "Coletamos apenas o necessário para responder ao seu pedido de orçamento.",
             "O formulário não envia nada a servidores do site: é você quem envia a mensagem pelo WhatsApp.",
+            "Novidades e promoções (marketing) só se você marcar a autorização opcional do formulário, e você pode cancelar quando quiser.",
             "Estatísticas de uso (Google Analytics) só com a sua permissão.",
             "Você pode pedir acesso, correção ou exclusão dos seus dados a qualquer momento.",
         ],
@@ -39,6 +41,7 @@ PAGES = {
             ("quem-somos", "Quem é o controlador dos dados", f"<p>Este site e o atendimento dele decorrente são operados por {CONTROLLER} (\"CJR Gastronomia\" ou \"nós\"). Para assuntos de privacidade, fale conosco {CHANNEL}.</p>"),
             ("dados", "Quais dados coletamos", f"""<ul>
 <li><strong>Dados do pedido de orçamento</strong>: nome, local do evento, data, número de convidados, observações e serviços de interesse. Esses dados <strong>não são enviados a nenhum servidor do site</strong>: ficam apenas na página aberta no seu navegador até você tocar em "Enviar pelo WhatsApp", quando são inseridos na mensagem que você mesmo envia.</li>
+<li><strong>Autorização de marketing (opcional)</strong>: se você marcar a caixa do formulário, a mensagem informa que você aceita receber novidades, promoções e conteúdos de marketing. A caixa vem desmarcada e não é necessária para pedir orçamento.</li>
 <li><strong>Dados da conversa no WhatsApp</strong>: número de telefone, nome de perfil e o conteúdo das mensagens trocadas conosco.</li>
 <li><strong>Armazenamento no seu navegador</strong>: a lista de serviços escolhidos e a sua escolha sobre cookies (veja a <a href="cookies.html">Política de Cookies</a>).</li>
 <li><strong>Dados de navegação, somente com o seu consentimento</strong>: páginas visitadas, cliques em botões, tipo de dispositivo e localização aproximada, por meio do Google Analytics. Nunca enviamos nome, telefone ou local do evento ao Google Analytics.</li>
@@ -52,10 +55,11 @@ PAGES = {
 <tr><td>Executar o serviço contratado (planejamento, preparo, montagem e atendimento)</td><td>Execução de contrato (art. 7º, V)</td></tr>
 <tr><td>Emitir documentos fiscais e cumprir obrigações legais</td><td>Cumprimento de obrigação legal ou regulatória (art. 7º, II)</td></tr>
 <tr><td>Defender direitos em processos judiciais, administrativos ou arbitrais</td><td>Exercício regular de direitos (art. 7º, VI)</td></tr>
+<tr><td>Enviar novidades, promoções e conteúdos de marketing, se você autorizar no formulário</td><td>Consentimento (art. 7º, I), que pode ser revogado a qualquer momento</td></tr>
 <tr><td>Medir o uso do site (Google Analytics)</td><td>Consentimento (art. 7º, I)</td></tr>
 <tr><td>Adaptar o cardápio a restrições alimentares informadas por você</td><td>Consentimento específico (art. 11, I)</td></tr>
 </tbody></table></div>
-<p>Não usamos seus dados para publicidade e não vendemos dados pessoais.</p>"""),
+<p>Só usamos seus dados para marketing com a sua autorização. Para cancelar, basta pedir pelo WhatsApp, a qualquer momento, sem prejuízo do seu orçamento ou contrato. Não vendemos dados pessoais.</p>"""),
             ("compartilhamento", "Com quem compartilhamos", """<ul>
 <li><strong>WhatsApp (Meta)</strong>: plataforma de mensagens que você escolhe usar para falar conosco, regida também pela política de privacidade do WhatsApp.</li>
 <li><strong>Google</strong>: apenas se você aceitar cookies de estatística (Google Analytics).</li>
@@ -66,6 +70,7 @@ PAGES = {
             ("retencao", "Por quanto tempo guardamos", f"""<ul>
 <li>Conversas de orçamento não contratado: até {F('12 meses')} após o último contato.</li>
 <li>Dados de clientes e documentos fiscais: pelo prazo exigido pela legislação e para defesa de direitos.</li>
+<li>Dados usados para marketing, quando autorizados: até você cancelar a autorização.</li>
 <li>Registros de acesso ao site: 6 meses (art. 15 do Marco Civil da Internet).</li>
 <li>Lista de serviços salva no navegador: até você removê-la ou limpar os dados do navegador. Escolha de cookies: 12 meses.</li>
 <li>Dados do Google Analytics, quando autorizados: {F('prazo configurado no Google Analytics, ex.: 14 meses')}.</li>
@@ -219,7 +224,7 @@ def render(name, page, parts):
         <p class="eyebrow reveal">Documentos</p>
         <h1 class="reveal" id="page-title" style="--delay: .1s">{page['title']}</h1>
         <p class="lead reveal" style="--delay: .2s">{page['lead']}</p>
-        <p class="page-hero__meta reveal" style="--delay: .3s"><span>Última atualização: {UPDATED}</span><span>Leitura: cerca de {page['minutes']} minutos</span></p>
+        <p class="page-hero__meta reveal" style="--delay: .3s"><span>Última atualização: {page.get('updated', UPDATED)}</span><span>Leitura: cerca de {page['minutes']} minutos</span></p>
       </div>
     </section>
     <div class="container legal-layout">

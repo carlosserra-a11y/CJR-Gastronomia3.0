@@ -20,6 +20,8 @@
 
   /** Detalhes do evento compartilhados entre os formulários da página (somente em memória). */
   let details = {};
+  /** Autorização de marketing: opcional e desmarcada por padrão (LGPD, consentimento livre). */
+  let marketing = false;
   const forms = [];
 
   function todayIso() {
@@ -71,8 +73,18 @@
     ]);
   }
 
+  function buildConsent(form) {
+    const id = `${form.id}-marketing`;
+    const box = el('input', { id, name: 'marketing', type: 'checkbox', value: 'sim' });
+    const label = el('label', { for: id }, [
+      'Autorizo o uso dos meus dados para receber novidades, promoções e conteúdos de marketing da CJR Gastronomia. Posso cancelar quando quiser. ',
+      el('span', { className: 'field__optional', text: '(opcional)' }),
+    ]);
+    return el('div', { className: 'lead-form__consent' }, [box, label]);
+  }
+
   function buildPrivacyNote() {
-    const note = el('p', { className: 'lead-form__privacy' }, ['Usamos estes dados só para preparar o seu orçamento. Ao enviar, o WhatsApp abre com a mensagem pronta e nada fica gravado neste site. Veja a ']);
+    const note = el('p', { className: 'lead-form__privacy' }, ['Usamos estes dados para preparar o seu orçamento e, só se você marcar a autorização de marketing, para enviar novidades e promoções. Ao enviar, o WhatsApp abre com a mensagem pronta e nada fica gravado neste site. Veja a ']);
     note.append(el('a', { href: 'privacidade.html', text: 'Política de Privacidade' }), '.');
     return note;
   }
@@ -81,6 +93,7 @@
     const grid = el('div', { className: 'lead-form__grid' }, FIELDS.map((field) => buildField(form, field)));
     form.append(grid);
     if (form.dataset.showServices !== undefined) form.append(buildServicesBox());
+    form.append(buildConsent(form));
     if (form.dataset.externalSubmit === undefined) {
       const submit = el('button', { className: 'btn btn--gold btn--lg btn--block', type: 'submit' });
       submit.innerHTML = '<svg aria-hidden="true"><use href="#i-whatsapp"/></svg>';
@@ -107,6 +120,11 @@
   }
 
   function onInput(form, event) {
+    if (event.target.name === 'marketing') {
+      marketing = event.target.checked;
+      forms.filter((other) => other !== form).forEach((other) => { other.elements.namedItem('marketing').checked = marketing; });
+      return;
+    }
     const field = FIELDS.find((f) => f.name === event.target.name);
     if (!field) return;
     details = { ...details, [field.name]: event.target.value };
@@ -126,7 +144,10 @@
       form.elements.namedItem(invalid[0].name).focus();
       return false;
     }
-    const values = Object.fromEntries(FIELDS.map((f) => [f.name, form.elements.namedItem(f.name).value.trim()]));
+    const values = {
+      ...Object.fromEntries(FIELDS.map((f) => [f.name, form.elements.namedItem(f.name).value.trim()])),
+      marketing: form.elements.namedItem('marketing').checked,
+    };
     const items = site.quote.items();
     const cta = form.dataset.cta || 'form';
     showStatus(form, site.whatsapp.open(site.whatsapp.leadMessage(values, items, cta), cta));
@@ -148,6 +169,7 @@
     if (!form || forms.includes(form)) return;
     buildForm(form);
     Object.entries(details).forEach(([name, value]) => { const input = form.elements.namedItem(name); if (input) input.value = value; });
+    form.elements.namedItem('marketing').checked = marketing;
     form.noValidate = true;
     form.addEventListener('input', (event) => onInput(form, event));
     form.addEventListener('focusout', (event) => {
