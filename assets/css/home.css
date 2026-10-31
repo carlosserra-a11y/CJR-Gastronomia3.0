@@ -78,9 +78,7 @@
 .about__portrait img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.6s var(--ease-out); }
 .about__portrait:hover img { transform: scale(1.04); }
 .about__team { position: absolute; right: 0; bottom: 0; width: 54%; margin: 0; padding: 0.5rem; border-radius: var(--radius); background: var(--c-paper); box-shadow: var(--shadow); }
-.about__team img { aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px; }
-.about__team figcaption { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 0.4rem 0.2rem; font-size: var(--fs-xs); color: var(--c-muted); }
-.about__team figcaption::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--c-gold); }
+.about__team img { aspect-ratio: 5 / 4; object-fit: cover; border-radius: 8px; }
 .about__badge {
   position: absolute; top: 6%; right: 2%; display: grid; place-items: center; width: clamp(104px, 12vw, 132px); aspect-ratio: 1;
   border: 1px solid rgba(232, 200, 130, 0.5); border-radius: 50%; background: var(--c-ink); color: var(--c-paper);
@@ -89,13 +87,12 @@
 .about__badge strong { display: block; font-family: var(--f-display); font-size: clamp(2.1rem, 1.6rem + 1.4vw, 2.75rem); line-height: 1; color: var(--c-gold-soft); }
 .about__badge span { display: block; max-width: 9ch; margin-top: 0.2rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; line-height: 1.3; }
 .about__lead { font-family: var(--f-display); font-size: clamp(1.4rem, 1.2rem + 0.7vw, 1.75rem); line-height: 1.4; color: var(--c-ink); }
-.about__text > p:not(.about__lead):not(.eyebrow):not(.signature) { color: var(--c-text); }
+.about__text > p:not(.about__lead):not(.eyebrow) { color: var(--c-text); }
 .stats { display: grid; gap: var(--space-2); grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin: var(--space-5) 0; padding: 0; list-style: none; }
 .stats li { padding: 1rem 1.15rem; border: 1px solid var(--c-line); border-radius: var(--radius); background: rgba(255, 255, 255, 0.82); transition: transform 0.4s var(--ease-out), box-shadow 0.4s; }
 .stats li:hover { transform: translateY(-4px); box-shadow: var(--shadow-soft); }
 .stats strong { display: block; font-family: var(--f-display); font-size: 2.4rem; font-weight: 600; line-height: 1; color: var(--c-gold-deep); }
 .stats span { display: block; margin-top: 0.35rem; font-size: 0.875rem; line-height: 1.4; color: var(--c-text); }
-.signature { margin: 0; font-family: var(--f-script); font-size: clamp(2.75rem, 2rem + 2.4vw, 4rem); line-height: 1; color: var(--c-gold-deep); }
 
 .company {
   position: relative; display: grid; gap: var(--space-5); margin-top: clamp(4rem, 8vw, 7rem); padding: clamp(2rem, 4vw, 3.5rem);
@@ -339,27 +336,10 @@
 .reel__ring circle { fill: none; stroke: var(--c-gold-soft); stroke-width: 2; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--progress, 0)); }
 
 .reel__info { position: relative; max-width: 34rem; }
-.reel__kicker { margin: 0 0 0.15rem; font-family: var(--f-script); font-size: clamp(2.75rem, 2rem + 2.6vw, 4.25rem); line-height: 1.05; color: var(--c-gold-soft); }
 .reel__title { margin-bottom: var(--space-3); font-size: clamp(2.1rem, 1.6rem + 2vw, 3.4rem); line-height: 1.08; color: var(--c-paper); }
 .reel__title em { font-style: italic; color: var(--c-gold-pale); }
-.reel__text { margin-bottom: var(--space-5); font-size: var(--fs-lg); line-height: 1.6; color: var(--c-on-dark); }
-.reel__label { margin-bottom: var(--space-2); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-gold-soft); }
-.reel__picks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.625rem; margin: 0 0 var(--space-5); padding: 0; list-style: none; }
-.reel-pick {
-  display: flex; align-items: center; gap: 0.8rem; width: 100%; min-height: 64px; padding: 0.7rem 0.9rem; text-align: left;
-  border: 1px solid rgba(248, 246, 242, 0.16); border-radius: 14px; background: rgba(255, 255, 255, 0.04); color: var(--c-paper);
-  cursor: pointer; transition: border-color 0.3s, background-color 0.3s, transform 0.3s var(--ease-out);
-}
-.reel-pick:hover { border-color: rgba(232, 200, 130, 0.6); background: rgba(232, 200, 130, 0.08); transform: translateY(-2px); }
-.reel-pick__icon { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid rgba(232, 200, 130, 0.6); border-radius: 50%; color: var(--c-gold-soft); transition: background-color 0.3s, color 0.3s; }
-.reel-pick__icon svg { width: 16px; height: 16px; }
-.reel-pick__text strong { display: block; font-size: 0.975rem; }
-.reel-pick__text small { display: block; font-size: 0.8125rem; color: var(--c-on-dark); }
-.reel-pick[aria-pressed="true"] { border-color: var(--c-gold-soft); background: rgba(232, 200, 130, 0.14); }
-.reel-pick[aria-pressed="true"] .reel-pick__icon { background: var(--c-gold-soft); color: var(--c-ink); }
-.reel__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5); }
-.reel__count { display: inline-grid; place-items: center; min-width: 1.6em; height: 1.6em; padding: 0 0.4em; border-radius: var(--radius-pill); background: var(--c-ink); color: var(--c-gold-soft); font-size: 0.8em; }
-.reel .link-arrow { color: var(--c-gold-soft); }
+.reel__text { margin-bottom: var(--space-3); font-size: var(--fs-lg); line-height: 1.6; color: var(--c-on-dark); }
+.reel__info .btn { margin-top: var(--space-3); }
 
 @keyframes reel-pulse { 0% { box-shadow: 0 0 0 0 rgba(232, 200, 130, 0.7); } 70%, 100% { box-shadow: 0 0 0 9px rgba(232, 200, 130, 0); } }
 @media (min-width: 900px) { .reel { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); } }
@@ -367,7 +347,6 @@
   .reel__media { width: min(100%, clamp(240px, (100vh - 200px) * 9 / 16, 340px)); }
   .reel__toggle { right: 12px; bottom: 36px; width: 56px; height: 56px; }
 }
-@media (max-width: 480px) { .reel__picks { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) {
   .reel__frame, .reel__media::before, .js:not(.reveal-off) .reel.reveal:not(.is-visible) .reel__frame { transform: none; }
   .reel__dot { animation: none; }

@@ -1,52 +1,52 @@
-/* Fotos do portfólio (fotos reais do Chef). Para incluir uma foto, adicione um item com src, thumb, w, h, cat e alt. */
+/* Fotos do portfólio (fotos reais do Chef, pasta "Site" do Drive). Para incluir uma foto, adicione um item com src, thumb, w, h, cat e alt. */
 window.ChefSite = window.ChefSite || {};
 window.ChefSite.portfolio = Object.freeze({
   "categories": [
     {
       "id": "frios",
-      "label": "Mesas de frios"
+      "label": "Mesa de frios"
+    },
+    {
+      "id": "ilhas",
+      "label": "Ilhas gastronômicas"
     },
     {
       "id": "finger",
       "label": "Finger foods"
     },
     {
-      "id": "doces",
-      "label": "Doces"
+      "id": "buffet",
+      "label": "Buffet"
     },
     {
-      "id": "quentes",
-      "label": "Pratos quentes"
+      "id": "empratado",
+      "label": "Empratado"
     },
     {
       "id": "coffee",
-      "label": "Coffee break"
+      "label": "Coffee break corporativo"
     },
     {
-      "id": "eventos",
-      "label": "Eventos"
-    },
-    {
-      "id": "bastidores",
-      "label": "Bastidores"
+      "id": "cookshow",
+      "label": "Cook Show"
     }
   ],
   "photos": [
     {
       "src": "assets/img/portfolio/frios-01.webp",
       "thumb": "assets/img/portfolio/frios-01-p.webp",
-      "w": 420,
-      "h": 560,
+      "w": 560,
+      "h": 373,
       "cat": "frios",
-      "alt": "Ilha de frios com queijos, presuntos, pitaia e ramos de alecrim"
+      "alt": "Mesa de frios com tábuas de queijos, frutas, pães e flores"
     },
     {
       "src": "assets/img/portfolio/frios-02.webp",
       "thumb": "assets/img/portfolio/frios-02-p.webp",
-      "w": 560,
-      "h": 411,
+      "w": 420,
+      "h": 560,
       "cat": "frios",
-      "alt": "Mesa de frios farta com queijos, embutidos e frutas"
+      "alt": "Tábua de queijos, frios e frutas tropicais"
     },
     {
       "src": "assets/img/portfolio/frios-03.webp",
@@ -54,7 +54,7 @@ window.ChefSite.portfolio = Object.freeze({
       "w": 420,
       "h": 560,
       "cat": "frios",
-      "alt": "Tábua de embutidos, queijos e uvas ao lado do cartão do Chef"
+      "alt": "Mesa de frios com salames, queijos, pitaia e orquídeas"
     },
     {
       "src": "assets/img/portfolio/frios-04.webp",
@@ -62,7 +62,7 @@ window.ChefSite.portfolio = Object.freeze({
       "w": 420,
       "h": 560,
       "cat": "frios",
-      "alt": "Terrines de queijo com azeitonas, castanhas e ervas frescas"
+      "alt": "Potes de castanhas e frutas secas na mesa de frios"
     },
     {
       "src": "assets/img/portfolio/frios-05.webp",
@@ -70,7 +70,7 @@ window.ChefSite.portfolio = Object.freeze({
       "w": 420,
       "h": 560,
       "cat": "frios",
-      "alt": "Tábua com queijos fatiados, salames e uvas verdes"
+      "alt": "Torradinhas com cream cheese e geleia de frutas vermelhas"
     },
     {
       "src": "assets/img/portfolio/frios-06.webp",
@@ -78,7 +78,7 @@ window.ChefSite.portfolio = Object.freeze({
       "w": 420,
       "h": 560,
       "cat": "frios",
-      "alt": "Grande tábua de frios com uvas roxas e verdes"
+      "alt": "Cubos de queijo com mel servidos em palitos"
     },
     {
       "src": "assets/img/portfolio/frios-07.webp",
@@ -86,7 +86,183 @@ window.ChefSite.portfolio = Object.freeze({
       "w": 420,
       "h": 560,
       "cat": "frios",
-      "alt": "Cubos de queijo, salame e morangos em tábua de madeira"
+      "alt": "Brownies em tábua de madeira com folhas de hortelã"
+    },
+    {
+      "src": "assets/img/portfolio/frios-08.webp",
+      "thumb": "assets/img/portfolio/frios-08-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "frios",
+      "alt": "Expositor de mini-hambúrgueres na mesa de frios"
+    },
+    {
+      "src": "assets/img/portfolio/frios-09.webp",
+      "thumb": "assets/img/portfolio/frios-09-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "frios",
+      "alt": "Mesa de frios farta montada em evento ao ar livre"
+    },
+    {
+      "src": "assets/img/portfolio/frios-10.webp",
+      "thumb": "assets/img/portfolio/frios-10-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "frios",
+      "alt": "Tábua de frios e queijos com orquídeas e cartão do Chef"
+    },
+    {
+      "src": "assets/img/portfolio/frios-11.webp",
+      "thumb": "assets/img/portfolio/frios-11-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "frios",
+      "alt": "Mesa de queijos, embutidos e frutas com pitaia e morangos"
+    },
+    {
+      "src": "assets/img/portfolio/frios-12.webp",
+      "thumb": "assets/img/portfolio/frios-12-p.webp",
+      "w": 560,
+      "h": 420,
+      "cat": "frios",
+      "alt": "Mesa de frios montada diante de janelas com vista para a cidade"
+    },
+    {
+      "src": "assets/img/portfolio/frios-13.webp",
+      "thumb": "assets/img/portfolio/frios-13-p.webp",
+      "w": 560,
+      "h": 420,
+      "cat": "frios",
+      "alt": "Mesa de frios e pães montada em bancada de cozinha"
+    },
+    {
+      "src": "assets/img/portfolio/frios-14.webp",
+      "thumb": "assets/img/portfolio/frios-14-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "frios",
+      "alt": "Favo de mel com queijos, frios e frutas secas em tábua"
+    },
+    {
+      "src": "assets/img/portfolio/frios-15.webp",
+      "thumb": "assets/img/portfolio/frios-15-p.webp",
+      "w": 315,
+      "h": 560,
+      "cat": "frios",
+      "alt": "Tábua de queijos, frios e frutas com favo de mel ao fundo"
+    },
+    {
+      "src": "assets/img/portfolio/frios-16.webp",
+      "thumb": "assets/img/portfolio/frios-16-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "frios",
+      "alt": "Mesa de frios com flores, pastas e cartão do Chef"
+    },
+    {
+      "src": "assets/img/portfolio/frios-17.webp",
+      "thumb": "assets/img/portfolio/frios-17-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "frios",
+      "alt": "Mesa de frios com presunto cru, queijos e mini-hambúrgueres"
+    },
+    {
+      "src": "assets/img/portfolio/frios-18.webp",
+      "thumb": "assets/img/portfolio/frios-18-p.webp",
+      "w": 560,
+      "h": 373,
+      "cat": "frios",
+      "alt": "Tábua de frutas coloridas com uvas, manga, kiwi e morangos"
+    },
+    {
+      "src": "assets/img/portfolio/frios-19.webp",
+      "thumb": "assets/img/portfolio/frios-19-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "frios",
+      "alt": "Brie assado com geleia, frutas vermelhas e castanhas"
+    },
+    {
+      "src": "assets/img/portfolio/ilhas-01.webp",
+      "thumb": "assets/img/portfolio/ilhas-01-p.webp",
+      "w": 560,
+      "h": 373,
+      "cat": "ilhas",
+      "alt": "Ilha gastronômica com frutas, frios e flores sobre toalha verde"
+    },
+    {
+      "src": "assets/img/portfolio/ilhas-02.webp",
+      "thumb": "assets/img/portfolio/ilhas-02-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "ilhas",
+      "alt": "Ilha gastronômica com estrutura de pastéis e pães"
+    },
+    {
+      "src": "assets/img/portfolio/ilhas-03.webp",
+      "thumb": "assets/img/portfolio/ilhas-03-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "ilhas",
+      "alt": "Ilha gastronômica com frios, saladas e doces em vários níveis"
+    },
+    {
+      "src": "assets/img/portfolio/finger-01.webp",
+      "thumb": "assets/img/portfolio/finger-01-p.webp",
+      "w": 459,
+      "h": 560,
+      "cat": "finger",
+      "alt": "Risoto com vieira em porção individual"
+    },
+    {
+      "src": "assets/img/portfolio/finger-02.webp",
+      "thumb": "assets/img/portfolio/finger-02-p.webp",
+      "w": 462,
+      "h": 560,
+      "cat": "finger",
+      "alt": "Mini-hambúrgueres com batata frita em porções individuais"
+    },
+    {
+      "src": "assets/img/portfolio/finger-03.webp",
+      "thumb": "assets/img/portfolio/finger-03-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "finger",
+      "alt": "Risoto de cogumelos em pratinhos individuais"
+    },
+    {
+      "src": "assets/img/portfolio/finger-04.webp",
+      "thumb": "assets/img/portfolio/finger-04-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "finger",
+      "alt": "Arroz com carne e legumes em ramequins individuais"
+    },
+    {
+      "src": "assets/img/portfolio/finger-05.webp",
+      "thumb": "assets/img/portfolio/finger-05-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "finger",
+      "alt": "Escondidinho gratinado com brotos em cumbuca individual"
+    },
+    {
+      "src": "assets/img/portfolio/finger-06.webp",
+      "thumb": "assets/img/portfolio/finger-06-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "finger",
+      "alt": "Risoto cremoso com brotos em pratinho individual"
+    },
+    {
+      "src": "assets/img/portfolio/finger-07.webp",
+      "thumb": "assets/img/portfolio/finger-07-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "finger",
+      "alt": "Copinhos de creme com morangos servidos em bandeja"
     },
     {
       "src": "assets/img/portfolio/finger-08.webp",
@@ -94,7 +270,7 @@ window.ChefSite.portfolio = Object.freeze({
       "w": 420,
       "h": 560,
       "cat": "finger",
-      "alt": "Minicheesecake de frutas vermelhas em porção individual"
+      "alt": "Verrines de creme com morangos e uvas em bandeja de madeira"
     },
     {
       "src": "assets/img/portfolio/finger-09.webp",
@@ -102,7 +278,7 @@ window.ChefSite.portfolio = Object.freeze({
       "w": 420,
       "h": 560,
       "cat": "finger",
-      "alt": "Verrines de creme com morangos e uvas sobre bandeja"
+      "alt": "Caldinhos com brotos em cumbucas individuais"
     },
     {
       "src": "assets/img/portfolio/finger-10.webp",
@@ -110,7 +286,7 @@ window.ChefSite.portfolio = Object.freeze({
       "w": 420,
       "h": 560,
       "cat": "finger",
-      "alt": "Verrines de brownie com creme e folhas de hortelã"
+      "alt": "Cesta de cones de batata frita"
     },
     {
       "src": "assets/img/portfolio/finger-11.webp",
@@ -118,215 +294,359 @@ window.ChefSite.portfolio = Object.freeze({
       "w": 420,
       "h": 560,
       "cat": "finger",
-      "alt": "Gratinados individuais dourados com ervas"
+      "alt": "Cesta de pastéis com ramos de tomilho"
     },
     {
-      "src": "assets/img/portfolio/doces-12.webp",
-      "thumb": "assets/img/portfolio/doces-12-p.webp",
+      "src": "assets/img/portfolio/finger-12.webp",
+      "thumb": "assets/img/portfolio/finger-12-p.webp",
       "w": 420,
       "h": 560,
-      "cat": "doces",
-      "alt": "Torre de doces finos com efeito de gelo seco"
+      "cat": "finger",
+      "alt": "Verrine de creme com brownie e hortelã"
     },
     {
-      "src": "assets/img/portfolio/doces-13.webp",
-      "thumb": "assets/img/portfolio/doces-13-p.webp",
+      "src": "assets/img/portfolio/finger-13.webp",
+      "thumb": "assets/img/portfolio/finger-13-p.webp",
       "w": 420,
       "h": 560,
-      "cat": "doces",
-      "alt": "Suporte de doces com fumaça de gelo seco"
+      "cat": "finger",
+      "alt": "Risoto de cogumelos em ramequim individual"
     },
     {
-      "src": "assets/img/portfolio/doces-14.webp",
-      "thumb": "assets/img/portfolio/doces-14-p.webp",
+      "src": "assets/img/portfolio/finger-14.webp",
+      "thumb": "assets/img/portfolio/finger-14-p.webp",
       "w": 420,
       "h": 560,
-      "cat": "doces",
-      "alt": "Cheesecake inteiro com calda de frutas vermelhas"
+      "cat": "finger",
+      "alt": "Minicheesecake de frutas vermelhas em porção individual"
     },
     {
-      "src": "assets/img/portfolio/doces-15.webp",
-      "thumb": "assets/img/portfolio/doces-15-p.webp",
+      "src": "assets/img/portfolio/finger-15.webp",
+      "thumb": "assets/img/portfolio/finger-15-p.webp",
+      "w": 414,
+      "h": 560,
+      "cat": "finger",
+      "alt": "Petit gâteau com creme e folha de hortelã"
+    },
+    {
+      "src": "assets/img/portfolio/finger-16.webp",
+      "thumb": "assets/img/portfolio/finger-16-p.webp",
       "w": 420,
       "h": 560,
-      "cat": "doces",
-      "alt": "Bolo red velvet decorado com morangos"
+      "cat": "finger",
+      "alt": "Saladas individuais em cumbucas finalizadas pela equipe"
     },
     {
-      "src": "assets/img/portfolio/doces-16.webp",
-      "thumb": "assets/img/portfolio/doces-16-p.webp",
+      "src": "assets/img/portfolio/buffet-01.webp",
+      "thumb": "assets/img/portfolio/buffet-01-p.webp",
       "w": 420,
       "h": 560,
-      "cat": "doces",
-      "alt": "Fatias de cheesecake servidas em pratos individuais"
+      "cat": "buffet",
+      "alt": "Peixe gratinado com ervas em réchaud no buffet"
     },
     {
-      "src": "assets/img/portfolio/quentes-17.webp",
-      "thumb": "assets/img/portfolio/quentes-17-p.webp",
+      "src": "assets/img/portfolio/buffet-02.webp",
+      "thumb": "assets/img/portfolio/buffet-02-p.webp",
       "w": 420,
       "h": 560,
-      "cat": "quentes",
-      "alt": "Prato de camarões com molho cremoso e salsinha"
+      "cat": "buffet",
+      "alt": "Arroz com carne e legumes em réchaud redondo"
     },
     {
-      "src": "assets/img/portfolio/quentes-18.webp",
-      "thumb": "assets/img/portfolio/quentes-18-p.webp",
+      "src": "assets/img/portfolio/buffet-03.webp",
+      "thumb": "assets/img/portfolio/buffet-03-p.webp",
       "w": 420,
       "h": 560,
-      "cat": "quentes",
-      "alt": "Risoto cremoso finalizado na frigideira"
+      "cat": "buffet",
+      "alt": "Salada verde com tomates-cereja e brotos"
     },
     {
-      "src": "assets/img/portfolio/quentes-19.webp",
-      "thumb": "assets/img/portfolio/quentes-19-p.webp",
+      "src": "assets/img/portfolio/buffet-04.webp",
+      "thumb": "assets/img/portfolio/buffet-04-p.webp",
       "w": 420,
       "h": 560,
-      "cat": "quentes",
-      "alt": "Capeletti em caldo servido em panela de ferro"
+      "cat": "buffet",
+      "alt": "Réchauds com risoto cremoso e acompanhamento no buffet"
     },
     {
-      "src": "assets/img/portfolio/quentes-20.webp",
-      "thumb": "assets/img/portfolio/quentes-20-p.webp",
+      "src": "assets/img/portfolio/buffet-05.webp",
+      "thumb": "assets/img/portfolio/buffet-05-p.webp",
       "w": 420,
       "h": 560,
-      "cat": "quentes",
-      "alt": "Pratos de massa com cogumelos e molho branco"
+      "cat": "buffet",
+      "alt": "Buffet com réchauds de arroz e acompanhamentos, decorado com orquídeas"
     },
     {
-      "src": "assets/img/portfolio/quentes-21.webp",
-      "thumb": "assets/img/portfolio/quentes-21-p.webp",
+      "src": "assets/img/portfolio/buffet-06.webp",
+      "thumb": "assets/img/portfolio/buffet-06-p.webp",
       "w": 420,
       "h": 560,
-      "cat": "quentes",
-      "alt": "Risoto servido em pratos brancos"
+      "cat": "buffet",
+      "alt": "Buffet com réchauds, frutas e orquídeas ao lado do cartão do Chef"
     },
     {
-      "src": "assets/img/portfolio/quentes-22.webp",
-      "thumb": "assets/img/portfolio/quentes-22-p.webp",
+      "src": "assets/img/portfolio/buffet-07.webp",
+      "thumb": "assets/img/portfolio/buffet-07-p.webp",
       "w": 420,
       "h": 560,
-      "cat": "quentes",
-      "alt": "Bowls individuais com arroz, legumes e carne"
+      "cat": "buffet",
+      "alt": "Buffet com réchauds e verrines de sobremesa em evento corporativo"
     },
     {
-      "src": "assets/img/portfolio/quentes-23.webp",
-      "thumb": "assets/img/portfolio/quentes-23-p.webp",
+      "src": "assets/img/portfolio/buffet-08.webp",
+      "thumb": "assets/img/portfolio/buffet-08-p.webp",
       "w": 420,
       "h": 560,
-      "cat": "quentes",
-      "alt": "Travessas de salada e risoto em mesa de buffet"
+      "cat": "buffet",
+      "alt": "Réchauds com risoto de cogumelos e arroz cremoso"
     },
     {
-      "src": "assets/img/portfolio/coffee-24.webp",
-      "thumb": "assets/img/portfolio/coffee-24-p.webp",
-      "w": 560,
-      "h": 420,
+      "src": "assets/img/portfolio/buffet-09.webp",
+      "thumb": "assets/img/portfolio/buffet-09-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "buffet",
+      "alt": "Risoto cremoso com ervas em réchaud"
+    },
+    {
+      "src": "assets/img/portfolio/buffet-10.webp",
+      "thumb": "assets/img/portfolio/buffet-10-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "buffet",
+      "alt": "Arroz gratinado com cobertura crocante em réchaud"
+    },
+    {
+      "src": "assets/img/portfolio/buffet-11.webp",
+      "thumb": "assets/img/portfolio/buffet-11-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "buffet",
+      "alt": "Peixe ao molho com alcaparras em réchaud"
+    },
+    {
+      "src": "assets/img/portfolio/buffet-12.webp",
+      "thumb": "assets/img/portfolio/buffet-12-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "buffet",
+      "alt": "Brócolis, cenoura e tomate salteados em réchaud"
+    },
+    {
+      "src": "assets/img/portfolio/buffet-13.webp",
+      "thumb": "assets/img/portfolio/buffet-13-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "buffet",
+      "alt": "Carne ao molho com alecrim em réchaud"
+    },
+    {
+      "src": "assets/img/portfolio/buffet-14.webp",
+      "thumb": "assets/img/portfolio/buffet-14-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "buffet",
+      "alt": "Arroz branco com ramos de alecrim em réchaud"
+    },
+    {
+      "src": "assets/img/portfolio/buffet-15.webp",
+      "thumb": "assets/img/portfolio/buffet-15-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "buffet",
+      "alt": "Batatas assadas douradas em réchaud"
+    },
+    {
+      "src": "assets/img/portfolio/buffet-16.webp",
+      "thumb": "assets/img/portfolio/buffet-16-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "buffet",
+      "alt": "Arroz com amêndoas e pimentão amarelo em réchaud"
+    },
+    {
+      "src": "assets/img/portfolio/buffet-17.webp",
+      "thumb": "assets/img/portfolio/buffet-17-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "buffet",
+      "alt": "Salada de folhas com morangos, manga e tomate"
+    },
+    {
+      "src": "assets/img/portfolio/buffet-18.webp",
+      "thumb": "assets/img/portfolio/buffet-18-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "buffet",
+      "alt": "Espaguete ao pesto em réchaud no buffet"
+    },
+    {
+      "src": "assets/img/portfolio/empratado-01.webp",
+      "thumb": "assets/img/portfolio/empratado-01-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "empratado",
+      "alt": "Filé com risoto e alecrim em prato fundo branco"
+    },
+    {
+      "src": "assets/img/portfolio/empratado-02.webp",
+      "thumb": "assets/img/portfolio/empratado-02-p.webp",
+      "w": 315,
+      "h": 560,
+      "cat": "empratado",
+      "alt": "Fatias de bolo de chocolate com frutas vermelhas empratadas"
+    },
+    {
+      "src": "assets/img/portfolio/empratado-03.webp",
+      "thumb": "assets/img/portfolio/empratado-03-p.webp",
+      "w": 315,
+      "h": 560,
+      "cat": "empratado",
+      "alt": "Fileira de pratos com filé e risoto prontos para servir"
+    },
+    {
+      "src": "assets/img/portfolio/empratado-04.webp",
+      "thumb": "assets/img/portfolio/empratado-04-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "empratado",
+      "alt": "Fatias de cheesecake com calda de frutas vermelhas empratadas"
+    },
+    {
+      "src": "assets/img/portfolio/empratado-05.webp",
+      "thumb": "assets/img/portfolio/empratado-05-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "empratado",
+      "alt": "Saladas empratadas prontas para servir aos convidados"
+    },
+    {
+      "src": "assets/img/portfolio/empratado-06.webp",
+      "thumb": "assets/img/portfolio/empratado-06-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "empratado",
+      "alt": "Salmão com risoto e tomilho em prato branco"
+    },
+    {
+      "src": "assets/img/portfolio/empratado-07.webp",
+      "thumb": "assets/img/portfolio/empratado-07-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "empratado",
+      "alt": "Filé com risoto servido à mesa durante o jantar"
+    },
+    {
+      "src": "assets/img/portfolio/empratado-08.webp",
+      "thumb": "assets/img/portfolio/empratado-08-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "empratado",
+      "alt": "Pratos de massa com cogumelos e molho branco prontos para servir"
+    },
+    {
+      "src": "assets/img/portfolio/coffee-01.webp",
+      "thumb": "assets/img/portfolio/coffee-01-p.webp",
+      "w": 420,
+      "h": 560,
       "cat": "coffee",
-      "alt": "Bancada de coffee break com bolos, frios, pães e flores"
+      "alt": "Coffee break corporativo com cestas de pães, flores e louças"
     },
     {
-      "src": "assets/img/portfolio/coffee-25.webp",
-      "thumb": "assets/img/portfolio/coffee-25-p.webp",
+      "src": "assets/img/portfolio/coffee-02.webp",
+      "thumb": "assets/img/portfolio/coffee-02-p.webp",
       "w": 420,
       "h": 560,
       "cat": "coffee",
-      "alt": "Coffee break montado em sala corporativa"
+      "alt": "Tábua de frios com salame, queijos e uvas no coffee break"
     },
     {
-      "src": "assets/img/portfolio/coffee-26.webp",
-      "thumb": "assets/img/portfolio/coffee-26-p.webp",
-      "w": 560,
-      "h": 373,
-      "cat": "coffee",
-      "alt": "Mesa de pães artesanais com frutas e geleias"
-    },
-    {
-      "src": "assets/img/portfolio/coffee-27.webp",
-      "thumb": "assets/img/portfolio/coffee-27-p.webp",
-      "w": 560,
-      "h": 373,
-      "cat": "coffee",
-      "alt": "Cesta de pães com uvas e frutas frescas"
-    },
-    {
-      "src": "assets/img/portfolio/coffee-28.webp",
-      "thumb": "assets/img/portfolio/coffee-28-p.webp",
+      "src": "assets/img/portfolio/coffee-03.webp",
+      "thumb": "assets/img/portfolio/coffee-03-p.webp",
       "w": 420,
       "h": 560,
       "cat": "coffee",
-      "alt": "Bolo fatiado ao lado do cartão com QR code do Chef"
+      "alt": "Tábuas de queijos, salames e uvas ao lado do cartão do Chef"
     },
     {
-      "src": "assets/img/portfolio/eventos-29.webp",
-      "thumb": "assets/img/portfolio/eventos-29-p.webp",
+      "src": "assets/img/portfolio/coffee-04.webp",
+      "thumb": "assets/img/portfolio/coffee-04-p.webp",
       "w": 420,
       "h": 560,
-      "cat": "eventos",
-      "alt": "Buffet ao ar livre ao entardecer, com frios, pães e flores"
+      "cat": "coffee",
+      "alt": "Coffee break com cesta de pães e frutas em evento corporativo"
     },
     {
-      "src": "assets/img/portfolio/eventos-30.webp",
-      "thumb": "assets/img/portfolio/eventos-30-p.webp",
+      "src": "assets/img/portfolio/coffee-05.webp",
+      "thumb": "assets/img/portfolio/coffee-05-p.webp",
       "w": 420,
       "h": 560,
-      "cat": "eventos",
-      "alt": "Buffet montado com réchauds e o Chef Carlos Jr ao lado"
+      "cat": "coffee",
+      "alt": "Tábua de frios com queijos e uvas sobre mesa de coffee break"
     },
     {
-      "src": "assets/img/portfolio/eventos-31.webp",
-      "thumb": "assets/img/portfolio/eventos-31-p.webp",
+      "src": "assets/img/portfolio/coffee-06.webp",
+      "thumb": "assets/img/portfolio/coffee-06-p.webp",
       "w": 420,
       "h": 560,
-      "cat": "eventos",
-      "alt": "Buffet com réchauds e salada colorida em evento"
+      "cat": "coffee",
+      "alt": "Estação de café, sucos e refrigerantes com copos e garrafas térmicas"
     },
     {
-      "src": "assets/img/portfolio/eventos-32.webp",
-      "thumb": "assets/img/portfolio/eventos-32-p.webp",
+      "src": "assets/img/portfolio/coffee-07.webp",
+      "thumb": "assets/img/portfolio/coffee-07-p.webp",
       "w": 420,
       "h": 560,
-      "cat": "eventos",
-      "alt": "Saladas servidas em pratos individuais para os convidados"
+      "cat": "coffee",
+      "alt": "Tábua de uvas, queijos e salames com cesta de pães"
     },
     {
-      "src": "assets/img/portfolio/bastidores-33.webp",
-      "thumb": "assets/img/portfolio/bastidores-33-p.webp",
+      "src": "assets/img/portfolio/coffee-08.webp",
+      "thumb": "assets/img/portfolio/coffee-08-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "coffee",
+      "alt": "Sanduíches de pão de forma em tábua com cesta de pães"
+    },
+    {
+      "src": "assets/img/portfolio/coffee-09.webp",
+      "thumb": "assets/img/portfolio/coffee-09-p.webp",
+      "w": 420,
+      "h": 560,
+      "cat": "coffee",
+      "alt": "Tábua de frutas, queijos e frios com tortas ao fundo"
+    },
+    {
+      "src": "assets/img/portfolio/cookshow-01.webp",
+      "thumb": "assets/img/portfolio/cookshow-01-p.webp",
+      "w": 332,
+      "h": 560,
+      "cat": "cookshow",
+      "alt": "Chef Carlos Jr finalizando pratos ao vivo durante o Cook Show"
+    },
+    {
+      "src": "assets/img/portfolio/cookshow-02.webp",
+      "thumb": "assets/img/portfolio/cookshow-02-p.webp",
+      "w": 373,
+      "h": 560,
+      "cat": "cookshow",
+      "alt": "Chef Carlos Jr servindo pratos aos convidados"
+    },
+    {
+      "src": "assets/img/portfolio/cookshow-03.webp",
+      "thumb": "assets/img/portfolio/cookshow-03-p.webp",
       "w": 421,
       "h": 560,
-      "cat": "bastidores",
-      "alt": "Chef Carlos Jr preparando massa fresca ao ar livre"
+      "cat": "cookshow",
+      "alt": "Chef Carlos Jr preparando massa fresca ao vivo em evento ao ar livre"
     },
     {
-      "src": "assets/img/portfolio/bastidores-34.webp",
-      "thumb": "assets/img/portfolio/bastidores-34-p.webp",
-      "w": 421,
+      "src": "assets/img/portfolio/cookshow-04.webp",
+      "thumb": "assets/img/portfolio/cookshow-04-p.webp",
+      "w": 309,
       "h": 560,
-      "cat": "bastidores",
-      "alt": "Chef Carlos Jr cortando massa fresca na máquina"
-    },
-    {
-      "src": "assets/img/portfolio/bastidores-35.webp",
-      "thumb": "assets/img/portfolio/bastidores-35-p.webp",
-      "w": 421,
-      "h": 560,
-      "cat": "bastidores",
-      "alt": "Chef Carlos Jr de dólmã branco em sua bancada"
-    },
-    {
-      "src": "assets/img/portfolio/bastidores-36.webp",
-      "thumb": "assets/img/portfolio/bastidores-36-p.webp",
-      "w": 374,
-      "h": 560,
-      "cat": "bastidores",
-      "alt": "Chef Carlos Jr falando ao microfone durante um evento"
-    },
-    {
-      "src": "assets/img/portfolio/bastidores-37.webp",
-      "thumb": "assets/img/portfolio/bastidores-37-p.webp",
-      "w": 560,
-      "h": 373,
-      "cat": "bastidores",
-      "alt": "Chef Carlos Jr e equipe finalizando as travessas na cozinha"
+      "cat": "cookshow",
+      "alt": "Chef Carlos Jr preparando risoto diante dos convidados"
     }
   ]
 });

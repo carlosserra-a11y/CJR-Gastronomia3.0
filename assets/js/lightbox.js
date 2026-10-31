@@ -26,7 +26,7 @@
         <button class="icon-btn lightbox__nav lightbox__nav--next" type="button" data-lb-next aria-label="Próxima foto"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
       </div>
       <ul class="lightbox__thumbs" role="list" data-lb-thumbs></ul>
-      <div class="lightbox__foot" data-lb-foot><button class="btn btn--gold" type="button" data-lb-add><svg aria-hidden="true"><use href="#i-plus"/></svg><span data-lb-add-label>Adicionar ao orçamento</span></button></div>`;
+      <div class="lightbox__foot" data-lb-foot><button class="btn btn--gold" type="button" data-lb-add><svg aria-hidden="true"><use href="#i-plus"/></svg><span data-lb-add-label>Incluir no orçamento</span></button></div>`;
     document.body.append(dialog);
     const q = (sel) => dialog.querySelector(sel);
     Object.assign(els, {
@@ -74,7 +74,7 @@
     lastTrigger = options.trigger || document.activeElement;
     els.title.textContent = options.title || 'Galeria';
     els.foot.hidden = !serviceId;
-    if (serviceId) els.addLabel.textContent = site.quote.has(serviceId) ? 'Ver meu orçamento' : 'Adicionar ao orçamento';
+    if (serviceId) els.addLabel.textContent = site.quote.has(serviceId) ? 'Ver meu orçamento' : 'Incluir no orçamento';
     renderThumbs();
     show(options.index || 0);
     els.dialog.showModal();

@@ -106,28 +106,9 @@
   }
 
   /* ---------- Vídeo dos bastidores: loop sem som, pausa fora da tela e respeita "movimento reduzido" ---------- */
-  /** Botões "incluir no orçamento" ao lado do vídeo: ligam/desligam o serviço e acompanham a gaveta. */
-  function initVideoPicks(root) {
-    const picks = Array.from(root.querySelectorAll('[data-video-service]'));
-    if (!picks.length || !site.quote) return;
-    const sync = () => picks.forEach((btn) => {
-      const added = site.quote.has(btn.dataset.videoService);
-      btn.setAttribute('aria-pressed', String(added));
-      btn.querySelector('use').setAttribute('href', added ? '#i-check' : '#i-plus');
-    });
-    picks.forEach((btn) => btn.addEventListener('click', () => {
-      const id = btn.dataset.videoService;
-      if (site.quote.has(id)) site.quote.remove(id);
-      else site.quote.add(id);
-    }));
-    document.addEventListener('quote:change', sync);
-    sync();
-  }
-
   function initFeatureVideo() {
     const root = document.querySelector('[data-feature-video]');
     if (!root) return;
-    initVideoPicks(root);
     const video = root.querySelector('video');
     const toggle = root.querySelector('[data-video-toggle]');
     let userPaused = reducedMotion();

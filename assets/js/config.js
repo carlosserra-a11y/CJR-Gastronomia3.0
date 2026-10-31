@@ -34,12 +34,13 @@ window.ChefSite.config = Object.freeze({
 
   // Serviços disponíveis para o orçamento (o id liga o cartão da página à lista).
   services: Object.freeze([
-    { id: 'frios', name: 'Mesas e ilhas de frios', cover: 'assets/img/frios-capa.webp' },
-    { id: 'finger', name: 'Finger foods', cover: 'assets/img/finger-capa.webp' },
-    { id: 'doces', name: 'Doces e gelo seco', cover: 'assets/img/doces-capa.webp' },
-    { id: 'quentes', name: 'Buffet de pratos quentes', cover: 'assets/img/quentes-capa.webp' },
-    { id: 'coffee', name: 'Coffee break', cover: 'assets/img/coffee-capa.webp' },
-    { id: 'showcooking', name: 'Show cooking (serviço especial)', cover: 'assets/img/showcooking-capa.webp' },
+    { id: 'frios', name: 'Mesa de frios', cover: 'assets/img/servicos/frios-capa.webp' },
+    { id: 'ilhas', name: 'Ilhas gastronômicas', cover: 'assets/img/servicos/ilhas-capa.webp' },
+    { id: 'finger', name: 'Finger foods', cover: 'assets/img/servicos/finger-capa.webp' },
+    { id: 'buffet', name: 'Buffet', cover: 'assets/img/servicos/buffet-capa.webp' },
+    { id: 'empratado', name: 'Empratado', cover: 'assets/img/servicos/empratado-capa.webp' },
+    { id: 'coffee', name: 'Coffee break corporativo', cover: 'assets/img/servicos/coffee-capa.webp' },
+    { id: 'cookshow', name: 'Cook Show', cover: 'assets/img/servicos/cookshow-capa.webp' },
   ]),
 
   // Resumo do Perfil no Google (atualize quando mudar).

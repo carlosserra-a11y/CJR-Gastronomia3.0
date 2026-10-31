@@ -68,13 +68,9 @@
     return `https://wa.me/${number}?${params.join('&')}`;
   }
 
-  /** Mensagem dos botões "Fale com o Chef" (inclui os serviços já escolhidos, se houver). */
-  function genericMessage(cta, intro) {
-    const items = site.quote ? site.quote.items() : [];
-    const lines = [intro || 'Olá, Chef Carlos! Vim pelo site e gostaria de conversar sobre um evento.', ''];
-    if (items.length) lines.push('*Serviços de interesse:*', ...numberedServices(items), '');
-    lines.push(`*Protocolo:* ${protocol()}`, `Origem: ${originLabel(cta)}`);
-    return lines.join('\n');
+  /** Mensagem curta dos botões "Fale com o Chef" (o pedido numerado sai só pela gaveta e pelos formulários). */
+  function genericMessage(intro) {
+    return intro || 'Olá, Chef Carlos! Vim pelo site e gostaria de conversar sobre um evento.';
   }
 
   /** Pedido de orçamento completo, numerado para o Chef organizar os atendimentos. */
@@ -110,15 +106,14 @@
     if (site.analytics) site.analytics.track('whatsapp_click', { cta_id: cta, page_path: window.location.pathname });
   }
 
-  /** Links [data-whatsapp]: cada clique gera um protocolo novo e registra o CTA de origem. */
+  /** Links [data-whatsapp]: mensagem curta e UTM com o CTA de origem (registrado a cada clique). */
   function bindLinks(root) {
     root.querySelectorAll('[data-whatsapp]').forEach((link) => {
       const cta = link.dataset.cta || 'site';
-      const refresh = () => { link.href = buildUrl(genericMessage(cta, link.dataset.message), cta); };
+      link.href = buildUrl(genericMessage(link.dataset.message), cta);
       link.target = '_blank';
       link.rel = 'noopener';
-      refresh();
-      link.addEventListener('click', () => { refresh(); track(cta); });
+      link.addEventListener('click', () => track(cta));
     });
   }
 

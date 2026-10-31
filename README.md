@@ -8,7 +8,7 @@ HTML, CSS e JavaScript puros, **sem etapa de build**: publique a pasta em qualqu
 
 | Arquivo | Conteúdo |
 |---|---|
-| `index.html` | Hero (mármore preto + logo animado), Quem somos, Serviços, Portfólio, Avaliações, Orçamento e rodapé |
+| `index.html` | Hero (mármore preto + logo animado), Serviços, Quem somos, Portfólio, Orçamento, Avaliações e rodapé |
 | `contato.html` | Página Contato com o mesmo formulário, passo a passo e contatos diretos |
 | `privacidade.html` · `termos.html` · `cookies.html` · `reembolso.html` | Documentos legais com sumário, barra de leitura e "voltar ao topo" |
 
@@ -18,7 +18,7 @@ HTML, CSS e JavaScript puros, **sem etapa de build**: publique a pasta em qualqu
 assets/css/   fonts · base (tokens, mármore, animações) · layout · components · home · pages
 assets/js/    config ⚙️ · consent · whatsapp · leadform · quote · carousel · lightbox · portfolio · reviews · effects · main
 assets/js/portfolio-data.js   lista de fotos do portfólio (categoria + texto alternativo)
-assets/img/   fotos otimizadas (WebP), hero, texturas de mármore e portfolio/
+assets/img/   fotos otimizadas (WebP), hero, texturas de mármore, servicos/ (capas) e portfolio/
 assets/fonts/ fontes hospedadas no próprio site (licença SIL OFL)
 assets/logo/  logos claro/escuro, logo em alta (hero) e favicon
 ```
@@ -28,7 +28,12 @@ assets/logo/  logos claro/escuro, logo em alta (hero) e favicon
 - **Abertura (intro):** o logo é "escrito" sobre mármore escuro na primeira página da visita (pula em seguida e respeita "movimento reduzido").
 - **Hero:** mármore preto com ingredientes, logo em alta com brilho dourado, poeira dourada, parallax com o mouse.
 - **Serviços:** continua o mármore do hero sem emenda. `assets/img/marmore-hero.webp` é um bloco repetível feito só com pedaços do mármore do próprio hero, na mesma escala e cor; a base do hero se dissolve nele e Serviços segue o mesmo padrão.
-- **Portfólio:** vídeo dos bastidores em loop (`assets/video/chef-carlos.mp4`) em moldura com selo "Evento real", barra e anel de progresso, botão de pausar e atalhos que incluem no orçamento os serviços que aparecem no vídeo; depois, filtros por categoria e duas faixas animadas com galeria em tela cheia.
+- **Serviços:** sete blocos (Mesa de frios, Ilhas gastronômicas, Finger foods, Buffet, Empratado, Coffee break corporativo e Cook Show), cada um com a capa, as fotos em galeria e o botão "Incluir no orçamento".
+- **Portfólio:** vídeo dos bastidores em loop (`assets/video/chef-carlos.mp4`) em moldura com selo "Evento real", barra e anel de progresso e botão de pausar, ao lado do texto "Experiências que vão além da gastronomia" e do botão "Inspire-se para seu próximo evento" (leva ao Instagram); depois, filtros por bloco de serviço e duas faixas animadas com galeria em tela cheia.
+
+### Fotos dos serviços e do portfólio
+
+Vêm da pasta **Site** do Google Drive do Chef, com uma subpasta por bloco de serviço. A foto chamada **CAPA** é a capa do cartão; as demais entram na galeria do cartão e no portfólio, na ordem do nome do arquivo. As fotos foram convertidas para WebP sem metadados (sem localização GPS): capa de 720 × 900 em `assets/img/servicos/<bloco>-capa.webp`, foto grande (até 1400 px) e miniatura (até 560 px) em `assets/img/portfolio/<bloco>-NN.webp` e `-p.webp`. Fotos repetidas na pasta entraram uma vez só.
 - **Fundo:** mármore claro com veios dourados, luzes suaves e veios que se desenham ao rolar.
 
 ## Como funciona o orçamento
@@ -51,7 +56,11 @@ assets/logo/  logos claro/escuro, logo em alta (hero) e favicon
 Origem: Meu orçamento (gaveta lateral)
 ```
 
-Cada clique gera um **protocolo único** (data + código). Cada botão leva um **UTM próprio** (`utm_content`): `hero-whatsapp`, `flutuante-inicio`, `flutuante-contato`, `flutuante-legal`, `gaveta-orcamento`, `form-inicio`, `form-contato`, `rodape` etc. A origem também aparece escrita na mensagem.
+Cada pedido gera um **protocolo único** (data + código), e a origem aparece escrita na mensagem.
+
+Os botões "Fale com o Chef" (topo, botão verde flutuante, rodapé e contatos diretos) abrem o WhatsApp só com a saudação "Olá, Chef Carlos! Vim pelo site e gostaria de conversar sobre um evento.", sem lista de serviços, protocolo ou origem.
+
+Todos os botões levam um **UTM próprio** (`utm_content`): `hero-whatsapp`, `flutuante-inicio`, `flutuante-contato`, `flutuante-legal`, `gaveta-orcamento`, `form-inicio`, `form-contato`, `rodape` etc.
 
 ## Configuração (`assets/js/config.js`)
 
