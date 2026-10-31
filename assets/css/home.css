@@ -62,13 +62,26 @@
   position: absolute; left: 50%; bottom: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
   font-size: 0.75rem; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; text-decoration: none;
   color: rgba(248, 246, 242, 0.75); transform: translateX(-50%);
+  /* surge depois da abertura e some assim que o visitante começa a rolar */
+  animation: scroll-cue-in 1s var(--ease-out) 1.8s both;
+  filter: opacity(max(0, 1 - var(--hero-fade, 0) * 2.5)) drop-shadow(0 1px 6px rgba(0, 0, 0, 0.6));
+  transition: color 0.3s;
 }
+.hero__scroll:hover, .hero__scroll:focus-visible { color: var(--c-gold-soft); }
 .hero__scroll span { position: relative; width: 1px; height: 46px; overflow: hidden; background: rgba(248, 246, 242, 0.25); }
 .hero__scroll span::after { content: ""; position: absolute; inset: 0; background: var(--c-gold-soft); animation: scroll-line 2.4s var(--ease-out) infinite; }
+/* seta discreta que "respira" para baixo, no mesmo ritmo da linha */
+.hero__scroll::after {
+  content: ""; width: 8px; height: 8px; margin-top: -0.2rem;
+  border-right: 1.5px solid var(--c-gold-soft); border-bottom: 1.5px solid var(--c-gold-soft);
+  transform: rotate(45deg); animation: scroll-cue-bob 2.4s ease-in-out infinite;
+}
 
 @keyframes hero-zoom { from { transform: scale(1.02); } to { transform: scale(1.1); } }
 @keyframes write-in { to { -webkit-mask-position: 0 0; mask-position: 0 0; } }
 @keyframes shine { 0% { background-position: 160% 0; } 35%, 100% { background-position: -60% 0; } }
+@keyframes scroll-cue-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scroll-cue-bob { 0%, 100% { transform: translateY(0) rotate(45deg); opacity: 0.45; } 50% { transform: translateY(6px) rotate(45deg); opacity: 1; } }
 
 /* ---------- Quem somos ---------- */
 .about .vein { top: 2rem; right: -4vw; }
@@ -216,12 +229,15 @@
 @media (max-width: 700px) {
   .hero__bg { object-position: 50% 100%; }
   .hero__actions .btn { width: 100%; }
-  .hero__scroll { display: none; }
+  .hero__scroll { bottom: 1rem; gap: 0.45rem; font-size: 0.6875rem; }
+  .hero__scroll span { height: 28px; }
   .about__media { padding: 0 8% 22% 0; }
   .about__team { width: 62%; }
   .carousel__count { display: none; }
   .company__pillars { grid-template-columns: 1fr; }
 }
+/* telas muito baixas (celular deitado): sem espaço livre abaixo dos botões */
+@media (max-height: 560px) { .hero__scroll { display: none; } }
 @media (prefers-reduced-motion: reduce) {
   .hero__logo-img { -webkit-mask-image: none; mask-image: none; animation: none; }
   .hero__logo-shine, .hero__dust { display: none; }
